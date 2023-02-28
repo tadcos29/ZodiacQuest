@@ -60,8 +60,8 @@ router.get('/login', (req, res) => {
    res.status(200).json('User already logged in');
     return;
   }
-  // res.render('login');
-  res.status(200).json('Legitimate login attempt');
+   res.render('login');
+  //res.status(200).json('Legitimate login attempt');
 });
 
 module.exports = router;
