@@ -1,0 +1,22 @@
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark text-light">
+    <ul class="navbar-nav mr-auto">
+         <li class="nav-item active">
+        <a class="nav-link" href="/">Home</a>
+        </li>
+        {{#if logged_in}}
+        <li class="nav-item active">
+        <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item active">
+        <a class="nav-link" href="#">Logout</a>
+        </li>
+        {{else}}
+         <li class="nav-item active">
+        <a class="nav-link" href="/login">Login</a>
+        </li>
+        {{/if}}
+
+    </ul>
+    
+</nav>
