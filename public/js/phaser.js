@@ -1,7 +1,7 @@
 
 function runGame() {
     let score = 0;
-    let config = {
+    const config = {
         type: Phaser.AUTO,
         width: 800,
         height: 600,
@@ -127,6 +127,7 @@ function runGame() {
     {
         if (gameOver)
         {
+            
             return;
         }
 
@@ -196,3 +197,4 @@ function runGame() {
 
     return score;
 }
+let newScore = runGame();
