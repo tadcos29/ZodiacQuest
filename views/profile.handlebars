@@ -1,0 +1,56 @@
+<div class="row">
+    <!--your profile stats-->
+ <div class="col-sm-8">
+{{#each users as |user|}}
+{{user.name}}'s Profile
+{{/each}}
+<!-- stats table -->
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col"> Highscore </th>
+      <th scope="col"> Times Played </th>
+      <th scope="col"> Coins </th>
+      <th scope="col"> Current Skin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"> 100<!-- {{highscore}}--></th>
+      <td> 2<!-- {{timesplayed}}--></td>
+      <td> 500<!-- {{coins}}--></td>
+      <td> pic <!-- {{currentskin}}--></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+ <!--friends stats-->
+<div class="col-sm-4">
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col"> Friend's Username </th>
+      <th scope="col">Highscore </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"> 
+
+        <!--below code needs to be edited for friend username-->
+        {{#each users as |user|}}
+        {{user.name}}
+        {{/each}}
+
+      
+      </th>
+      <td> 2<!-- {{friendhighscore}}--></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+</div> 
