@@ -42,10 +42,26 @@ const signupFormHandler = async (event) => {
   }
 };
 
-document
-  .querySelector('#login-form')
-  .addEventListener('submit', loginFormHandler);
+const signUpToggle = async (event) => {
+  event.stopPropagation();
+  const ls=document.querySelector('#login-section')
+  ls.classList.toggle('d-none');
+  const ss=document.querySelector('#signup-section');
+  ss.classList.toggle('d-none');
+  }
 
 document
-  .querySelector('#signup-form')
-  .addEventListener('submit', signupFormHandler);
+  .querySelector('#login-form')
+  .addEventListener('submit', loginFormHandler)
+
+  document
+  .querySelector('#login-form')
+  .addEventListener('submit', loginFormHandler)
+
+document
+  .querySelector('#sign-up-toggle')
+  .addEventListener('click', signUpToggle)
+
+  document
+  .querySelector('#sign-in-toggle')
+  .addEventListener('click', signUpToggle)
