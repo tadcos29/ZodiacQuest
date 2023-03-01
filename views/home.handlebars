@@ -1,10 +1,10 @@
-home
+{{!-- home
 {{#each users as |user|}}
 {{user.name}}
 
-{{/each}}
+{{/each}} --}}
     {{> custom-phaser}}
 {{#if logged_in}}
-    Yeah, you're logged in.
+ <p>Logged in as: {{user}}</p>
 
 {{/if}}
