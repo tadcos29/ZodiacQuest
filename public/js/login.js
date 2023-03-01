@@ -51,8 +51,8 @@ const signUpToggle = async (event) => {
   }
 
 document
-  .querySelector('#login-form')
-  .addEventListener('submit', loginFormHandler)
+  .querySelector('#signup-form')
+  .addEventListener('submit', signupFormHandler)
 
   document
   .querySelector('#login-form')
