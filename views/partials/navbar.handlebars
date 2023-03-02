@@ -5,18 +5,15 @@
         <a class="nav-link" href="/">Home</a>
         </li>
         {{#if logged_in}}
-        <li class="nav-item active">
-        <a class="nav-link" href="#">Dashboard</a>
+          <li class="nav-item active">
+        <a class="nav-link" href="/profile">Profile</a>
         </li>
         <li class="nav-item active">
-        <a class="nav-link" href="#">Logout</a>
+        <a class="nav-link" id="logout" href="">Logout</a>
         </li>
      
           <script src="/js/logout.js"></script>
         {{else}}
-           <li class="nav-item active">
-        <a class="nav-link" href="/profile">Profile</a>
-        </li>
          <li class="nav-item active">
         <a class="nav-link" href="/login">Login</a>
         </li>
