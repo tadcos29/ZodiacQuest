@@ -44,6 +44,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // plugging in the routes from controllers, which have been required into an object, into app
 app.use(routes);
 // sync database
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
