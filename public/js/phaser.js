@@ -20,6 +20,7 @@ function runGame() {
         }
     };
 
+    let spike;
     let player;
     let stars;
     let bombs;
@@ -38,6 +39,7 @@ function runGame() {
         this.load.image('ground', './img/platform.png');
         this.load.image('star', './img/star.png');
         this.load.image('bomb', './img/bomb.png');
+        this.load.image('spike', './img/spike.png');
         this.load.spritesheet('dude', 
             './img/dude.png',
             { frameWidth: 32, frameHeight: 48 }
@@ -47,6 +49,14 @@ function runGame() {
 
     function create ()
     {
+
+        this.events.on('gameover', async () => {
+            console.log('Game over! Score was '+score);
+            await fetch('api/gamedata', {method: 'POST',headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({score:score})
+                })
+            console.log('Pushed score event');
+          });
         //  A simple background for our game
         this.add.image(400, 300, 'sky');
 
@@ -64,6 +74,8 @@ function runGame() {
 
         // The player and its settings
         player = this.physics.add.sprite(100, 450, 'dude');
+        spike = this.physics.add.sprite(300, 450, 'spike');
+        spike.setDisplaySize(64, 64);
 
         //  Player physics properties. Give the little guy a slight bounce.
         player.setBounce(0.2);
@@ -100,6 +112,9 @@ function runGame() {
             setXY: { x: 12, y: 0, stepX: 70 }
         });
 
+       
+        this.physics.add.collider(spike, platforms);
+
         stars.children.iterate(function (child) {
 
             //  Give each star a slightly different bounce
@@ -121,6 +136,12 @@ function runGame() {
         this.physics.add.overlap(player, stars, collectStar, null, this);
 
         this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+        this.physics.add.collider(player, spike, hitBomb, null, this);
+
+     
+
+
     }
 
     function update ()
@@ -192,6 +213,7 @@ function runGame() {
 
         player.anims.play('turn');
 
+        this.events.emit('gameover');
         gameOver = true;
     }
 

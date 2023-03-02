@@ -1,16 +1,15 @@
 const User = require('./User');
-/// const Project = require('./Project');
+const GameData = require('./GameData');
 
-// User.hasMany(Project, {
-//   foreignKey: 'user_id',
-//   onDelete: 'CASCADE'
-// });
+User.hasMany(GameData, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
 
-// Project.belongsTo(User, {
-//   foreignKey: 'user_id'
-// });
+GameData.belongsTo(User, {
+  foreignKey: 'user_id'
+   });
 
 // Various database relationships go here
-module.exports = { User, 
-  //Project 
+module.exports = { User, GameData 
 };
