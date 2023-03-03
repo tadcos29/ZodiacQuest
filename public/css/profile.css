@@ -1,0 +1,35 @@
+
+:root {
+    --primary-light: #8e8aff;
+    --primary: #655dff;
+    --primary-dark: #4f46f8;
+  
+    --greyLight-1: #e0ecf7;
+    --greyLight-2: #c8dbf0;
+    --greyDark-1: #92acc4;
+    --greyDark-2: #5a768f;
+  }
+
+#leave-comment {
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0%;
+}
+#view-comment {
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0%;
+}
+
+td {
+    font-family: "quantico", sans-serif;
+}
+
+ p {
+    font-family: "quantico", sans-serif;
+}
+
+h1, h2, h5, th, #addfriend {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
