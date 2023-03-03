@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { GameData } = require('../../models');
+const { GameData, Achievement } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -8,6 +8,10 @@ router.post('/', withAuth, async (req, res) => {
    let rBody=req.body;
    rBody.user_id=req.session.user_id;
     const gameData = await GameData.create(rBody);
+    currAchieve = await Achievement.findOne({ where: { user_id: gameData.user_id } })
+    if (gameData.score > currAchieve.hs) {
+      await Achievement.update({ hs: gameData.score }, {where:  { user_id: gameData.user_id }});
+    }
     res.status(200).json(gameData);
     }
    catch (err) {

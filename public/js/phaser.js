@@ -74,7 +74,7 @@ function runGame() {
 
         // The player and its settings
         player = this.physics.add.sprite(100, 450, 'dude');
-        spike = this.physics.add.sprite(300, 450, 'spike');
+        spike = this.physics.add.sprite(420, 450, 'spike');
         spike.setDisplaySize(64, 64);
 
         //  Player physics properties. Give the little guy a slight bounce.
