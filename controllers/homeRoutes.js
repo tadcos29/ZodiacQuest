@@ -53,15 +53,20 @@ router.get('/profile', withAuth, async (req, res) => {
 const user = userData.get({ plain: true });
 // const games = gameData.map((game) => game.get({ plain: true }));
 const rawPlayCount = await sequelize.query(`select count(game_data.id) as 'count' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.session.user_id} GROUP BY user.id;`);
-const rawHS = await sequelize.query(`select achievement.hs as 'hs', achievement.skin as 'skin' from user JOIN achievement on achievement.user_id=user.id WHERE user.id=${req.session.user_id}`);
+const rawHS = await sequelize.query(`select achievement.hs as 'hs', achievement.currency as 'currency', achievement.skin as 'skin' from user JOIN achievement on achievement.user_id=user.id WHERE user.id=${req.session.user_id}`);
 const rawLeaderBoard = await sequelize.query(`SELECT user.name as 'name', achievement.hs as 'hs' FROM user JOIN achievement on achievement.user_id=user.id ORDER BY achievement.hs DESC;`);
 console.log('lb')
 let leaderboard=rawLeaderBoard[0];
 console.log(leaderboard);
+console.log('rawplay');
+console.log(rawPlayCount[0][0]);
 // patch-up job using serialise queries. It returns a nested array. Might be able to expand this query to retrieve more data.
+if (rawPlayCount[0][0]) {
 user.played_count=rawPlayCount[0][0].count;
+} else {user.played_count=0}
 user.hs=rawHS[0][0].hs;
-user.skin=rawHS[0][0].skin;  // deconstruct that once there are more fields
+user.skin=rawHS[0][0].skin;
+user.currency=rawHS[0][0].currency; // deconstruct that once there are more fields
 // console.log(games);
 console.log(user);
     // Pass serialized data and session flag into template
