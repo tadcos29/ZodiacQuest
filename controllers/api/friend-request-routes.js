@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const FriendRequest = require('../models/friendRequest');
-const User = require('../models/user');
+const FriendRequest = require('../../models/friendRequest');
+const User = require('../../models/user');
 
 // Send a friend request
 
@@ -20,7 +20,7 @@ router.post('/friendRequests', async (req, res) => {
   }
 });
 
-router.get('/friend-request/pending/:email', async (req, res) => {
+router.get('/friendRequests/pending/:email', async (req, res) => {
   try {
     const user = await User.findOne({ where: { email: req.params.email } });
     if (!user) {

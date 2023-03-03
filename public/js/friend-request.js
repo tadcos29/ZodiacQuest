@@ -6,7 +6,7 @@ $('#sendFriendRequest').on('click', async function() {
     const receiverEmail = $('#receiverEmail').val();
 
     try {
-      const response = await fetch('/friendRequests', {
+      const response = await fetch('/api/friendRequests', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ $('#sendFriendRequest').on('click', async function() {
     const email = $('#receiverEmail').val();
   
     try {
-      const response = await fetch(`/friend-request/pending/${email}`);
+      const response = await fetch(`/api/friendRequests/pending/${email}`);
       const data = await response.json();
       console.log(data);
   
@@ -54,7 +54,7 @@ $('#sendFriendRequest').on('click', async function() {
     const id = $(this).data('id');
   
     try {
-      const response = await fetch(`/friendRequests/${id}/accept`, {
+      const response = await fetch(`/api/friendRequests/${id}/accept`, {
         method: 'PUT'
       });
   
@@ -72,7 +72,7 @@ $('#sendFriendRequest').on('click', async function() {
     const id = $(this).data('id');
   
     try {
-      const response = await fetch(`/friendRequests/${id}/reject`, {
+      const response = await fetch(`/api/friendRequests/${id}/reject`, {
         method: 'PUT'
       });
   
