@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Achievement } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
-
+    const achieveData = await Achievement.create({user_id:userData.id})
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
