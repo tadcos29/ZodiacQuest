@@ -64,10 +64,13 @@ console.log(rawPlayCount[0][0]);
 if (rawPlayCount[0][0]) {
 user.played_count=rawPlayCount[0][0].count;
 } else {user.played_count=0}
+if (rawHS[0][0]){ 
+
+
 user.hs=rawHS[0][0].hs;
 user.skin=rawHS[0][0].skin;
 user.currency=rawHS[0][0].currency; // deconstruct that once there are more fields
-// console.log(games);
+}// console.log(games);
 console.log(user);
     // Pass serialized data and session flag into template
     res.render('profile', { 

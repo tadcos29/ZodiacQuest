@@ -1,10 +1,10 @@
 
 :root {
     --primary-light: #8e8aff;
-    --primary: #655dff;
-    --primary-dark: #4f46f8;
-  
-    --greyLight-1: #e0ecf7;
+    --primary: rgb(101, 93, 255);
+    --primary-dark: rgb(105, 58, 207);
+  --special: rgb(24, 193, 145);
+    --greyLight-1: #e0ecf7; 
     --greyLight-2: #c8dbf0;
     --greyDark-1: #92acc4;
     --greyDark-2: #5a768f;
@@ -29,7 +29,130 @@ td {
     font-family: "quantico", sans-serif;
 }
 
-h1, h2, h5, th, #addfriend {
-    font-family: 'IBM Plex Sans', sans-serif;
+ h5, th {
+    font-family: 'Goldman', cursive;
 }
 
+h1, h2, h3 {
+    font-family: 'Goldman', cursive;
+    font-weight: 700;
+}
+
+#sendFriendRequest {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--primary);  
+    font-size: .8rem;
+}
+#sendFriendRequest:hover {
+    font-family: 'IBM Plex Sans', sans-serif;
+
+    background-color: #4f48d8;  
+    font-size: .8rem;
+}
+
+#viewAddFriend {
+    font-family: 'IBM Plex Sans', sans-serif;
+    border:3px solid;
+    border-color: var(--special);  
+    font-size: .7rem;
+}
+#viewAddFriend:hover {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--special);
+}
+#getPendingRequests {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: .7rem;
+    border:3px solid;
+    border-color: var(--special);  
+}
+#getPendingRequests:hover {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--special);
+}
+
+body {
+    background: linear-gradient(-45deg,#000000,
+    #141735,
+    #302c70);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        height: 100vh;
+    
+    }
+    
+    
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    
+    h1 {
+        font-size: 4rem;
+    }
+
+    #boxes {
+        border-radius: 30px;
+        background-color: #444072;
+        /*box-shadow: 0px 1px 18px 1px #100d1d;*/
+    }
+
+    #boxes:hover {
+        scale: 1.01;
+        background-color: #4f4986;
+        /*box-shadow: 0px 1px 25px 1px #100d1d;*/
+    }
+    #offside, #friend-partial {
+        border-radius: 30px;
+        background-color: #413d6f;
+    }
+
+    #offside:hover, #friend-partial:hover {
+        scale: 1.01;
+        background-color: #514c89;
+    }
+    #card-body {
+        border-radius: 10px;
+        background-color: #1f1d38;
+        border-color: #1f1d38;
+    }
+.material-symbols-outlined {
+    color:#06e0a2;
+}
+.badge {
+    background-color: var(--special);
+}
+
+
+
+/* STYLING FOR FRI3END FORM */ 
+#add-friends-container .form-group {
+    position: relative;
+  }
+ 
+
+ #add-friends-container .form-group input {
+    width: 80%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #c2bfff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+ 
+
+/* STYLING FOR CHART */ 
+#score {
+    transform: translateX(-52%) rotate(-90deg);
+    color: white;
+}
