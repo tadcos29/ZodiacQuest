@@ -41,27 +41,28 @@ router.get('/profile', withAuth, async (req, res) => {
       include: {model: GameData, model:Achievement },
       attributes: {
         exclude: ['password'],
-        // include: [
-        //   [sequelize.fn('COUNT', sequelize.col('game_data.id')), 'played_count'],
-        // ]
+        include: [
+          [sequelize.fn('COUNT', sequelize.col('game_data.id')), 'played_count'],
+        ]
       },
-      // group: ['user.id', 'game_data.id']
+      group: ['user.id', 'game_data.id']
       
     });
    // const gameData = await GameData.findAll({ where: { user_id: req.session.user_id },})
 // console.log(gameData);
 const user = userData.get({ plain: true });
 // const games = gameData.map((game) => game.get({ plain: true }));
-const rawPlayCount = await sequelize.query(`select count(game_data.id) as 'count' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.session.user_id} GROUP BY user.id;`);
+// const rawPlayCount = await sequelize.query(`select count(game_data.id) as 'count' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.session.user_id} GROUP BY user.id;`);
 const rawHS = await sequelize.query(`select achievement.hs as 'hs', achievement.skin as 'skin' from user JOIN achievement on achievement.user_id=user.id WHERE user.id=${req.session.user_id}`);
-const rawLeaderBoard = await sequelize.query(`SELECT user.name as 'name', achievement.hs as 'hs' FROM user JOIN achievement on achievement.user_id=user.id ORDER BY achievement.hs DESC;`);
+const rawLeaderBoard = await sequelize.query(`SELECT user.name as 'name', achievement.currency as 'currency', achievement.hs as 'hs' FROM user JOIN achievement on achievement.user_id=user.id ORDER BY achievement.hs DESC;`);
 console.log('lb')
 let leaderboard=rawLeaderBoard[0];
 console.log(leaderboard);
 // patch-up job using serialise queries. It returns a nested array. Might be able to expand this query to retrieve more data.
-user.played_count=rawPlayCount[0][0].count;
+// user.played_count=rawPlayCount[0][0].count;
 user.hs=rawHS[0][0].hs;
-user.skin=rawHS[0][0].skin;  // deconstruct that once there are more fields
+user.skin=rawHS[0][0].skin;
+user.currency=rawHS[0][0].currency; // deconstruct that once there are more fields
 // console.log(games);
 console.log(user);
     // Pass serialized data and session flag into template
