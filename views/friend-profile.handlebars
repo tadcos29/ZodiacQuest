@@ -23,7 +23,7 @@
     <!--global-->
 
   <div class="col-3 d-flex justify-content-center">
-  <div id="offside" class="profile-box mx-auto bg-slate-200 w-100  pr-10 pl-10 mt-10 rounded-lg">
+  <div id="offside" class="profile-box mx-auto bg-slate-200 w-100  pr-20 pl-20 mt-10 rounded-lg">
     <h2 class="p-4 text-center text-white"> Global <span class="material-symbols-outlined">
 leaderboard
 </span></h2>
@@ -47,7 +47,7 @@ leaderboard
 </div>
 <!-- profile -->
  <div class="col-5 d-flex justify-content-center mx-2">
-<div id="boxes" class="profile-box mx-auto w-100 pr-10 pl-10 mt-10">
+<div id="boxes" class="profile-box mx-auto w-100 pr-20 pl-20 mt-10">
 <h1 class=" text-center p-4 text-white"> {{user.name}}</h1>
 <div class="row w-100 justify-content-around align-content-around">
   <div id="card-body" class="card d-flex my-10 col-4">
@@ -82,12 +82,37 @@ leaderboard
 </div>
  <!--friends stats-->
 <div class="col-3 d-flex justify-content-center">
-  <div id="offside" class="profile-box mx-auto bg-slate-200 w-100 pr-10 pl-10 mt-10 pb-10">
+  <div id="offside" class="profile-box mx-auto bg-slate-200 w-100 pr-20 pl-20 mt-10 pb-10">
       <h2 class="p-4 text-center text-white">Friends <span class="material-symbols-outlined">
 leaderboard
 </span></h2>
-{{> friends}}      
-
+      
+<table class="table table-hover table-dark mb-4">
+  <thead>
+    <tr>
+      <th scope="col"> Friend </th>
+      <th scope="col">Highscore </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> friend<!-- {{friendhighscore}}--></td>
+      <td> 2<!-- {{friendhighscore}}--></td>
+    </tr>
+    <tr>
+      <td> friend<!-- {{friendhighscore}}--></td>
+      <td> 2<!-- {{friendhighscore}}--></td>
+    </tr>
+    <tr>
+      <td> friend<!-- {{friendhighscore}}--></td>
+      <td> 2<!-- {{friendhighscore}}--></td>
+    </tr>
+    <tr>
+      <td> friend<!-- {{friendhighscore}}--></td>
+      <td> 2<!-- {{friendhighscore}}--></td>
+    </tr>
+  </tbody>
+</table>
 
        
 </div>
@@ -142,11 +167,6 @@ leaderboard
   </div>
 
   <!--friends-->
- <div class="col-3 d-flex justify-content-center mx-2 ">
-<div id="friend-partial" class="w-100 px-10 pt-4 pb-4 text-center">
-  {{> friend-request}}
-</div>
-  </div>
 
 <script>
   /*this is where values go*/
