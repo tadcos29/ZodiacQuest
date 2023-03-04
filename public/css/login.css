@@ -104,7 +104,7 @@ label 				 {
   color:var(--primary);
 }
 /* active state */
-.form-input:focus ~ #signup-label, .form-input:active ~ #signup-label	, .form-input:valid ~ #signup-label	{
+.form-input:focus ~ #signup-label, .form-input:invalid ~ #signup-label	{
     top:-20px;
     font-size:14px;
     color:var(--primary);

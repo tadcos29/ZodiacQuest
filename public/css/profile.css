@@ -156,3 +156,31 @@ body {
     transform: translateX(-52%) rotate(-90deg);
     color: white;
 }
+
+
+
+
+
+/* COMMENT STYLE */ 
+.add-comment {
+    margin: 20px;
+    text-align: center;
+    border: solid black;
+    background-color: white;
+  }
+  
+  .add-comment-title {
+    margin: 5px;
+    color: white;
+  }
+  
+  #content-newcomment  {
+    width: 95%;
+    padding: 2px;
+    margin: 5px;
+  }
+  
+  .commentbtn {
+    margin: 5px;
+    font-size: 15px;
+  }
