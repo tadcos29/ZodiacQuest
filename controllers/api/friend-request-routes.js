@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const FriendRequest = require('../../models/friendRequest');
-const User = require('../../models/user');
+const User = require('../../models/User');
 
 // Send a friend request
 
