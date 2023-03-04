@@ -71,9 +71,10 @@ class Main {
             delay:2000,
             callback:() => this.addEnemy(),
             loop:true,
-        })
+        });
+        this.events.on('gameover', this.gameOver, this);
     }
-
+ 
     update() {
     //    this.player.angle++;
        
@@ -124,8 +125,8 @@ class Main {
         }
 
         else if (this.arrow.down.isDown) {
-           // this.player.setVelocityY(160);
-            this.player.angle++;
+           //this.player.setVelocityY(160);
+           // this.player.angle++;
           
         }
        
@@ -149,15 +150,25 @@ class Main {
 
     } // create world
 
+    async gameOver() {
+        {
+            console.log('Game over! Score was '+this.score);
+            await fetch('api/gamedata', {method: 'POST',headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({score:this.score, currency:this.currency})
+                })
+            console.log('Pushed score event');
+          }
+
+    }
     playerDie() {
         this.events.emit('gameover');
         this.scene.start('intro', {score:this.score})
     }
     takeCoin() {
         this.currency=this.currency+1;
-        this.score=this.score+1;
+        this.score=this.score+10;
         this.currencyText.setText('Currency Gained: '+this.currency);
-        this.scoreTest.setText('Currency Gained: '+this.score);
+        this.scoreText.setText('Score: '+this.score);
         this.updateCoinPosition();
     }
     addEnemy() {
