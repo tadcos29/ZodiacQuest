@@ -2,12 +2,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-
-  <h1>Friend Requests</h1>
-  <div>
-    <label for="receiverEmail">Receiver email:</label>
-    <input type="email" id="receiverEmail" name="receiverEmail" required>
-
+  
+  <div id="add-friends-container">
+    <h3 class="text-white pb-3">Friend Requests</h3>
+  
+  <div class="form-group mt-5">
+   
+    <input type="email" id="receiverEmail" name="receiverEmail" placeholder="Friend's Email" required>
   </div>
 
   <button id="sendFriendRequest" class="d-flex mx-auto py-2 px-4 mt-3 mb-5 rounded-full text-white" type="submit">Send Friend Request</button>
@@ -25,15 +26,7 @@
     </div>
     <button id="viewAddFriend" class="d-inline-block mx-auto py-2 px-4 mb-3 rounded-full text-white" type="submit">Add Friend</button>
   </div>
-
-      <a class="viewFriends" href="/friends">View Friends</a>
-
-
  
-
-
-
-  
 <script>
 $(document).ready(function(){
 
@@ -60,6 +53,5 @@ $(document).ready(function(){
 
 });
 </script>
-
 
 <script src="./js/friend-request.js"></script>
