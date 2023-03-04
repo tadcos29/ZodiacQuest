@@ -1,0 +1,26 @@
+<class id="friendTitle">
+    <div id="friends">
+    <table id="friend-list" class="table table-hover table-dark mb-4">
+  <thead>
+    <tr>
+      <th scope="col"> Friend </th>
+      <th scope="col">Highscore </th>
+    <th scope="col"> Friends Since </th>
+      <th scope="col"> Remove Friend </th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each user.friend as |friend|}}
+    <tr>
+      <td> example {{friend.name}} </td>
+      <td> example {{friend.name}} </td>
+      <td> example {{friend.name}}</td>
+      <!--CODE NEEDED FOR REMOVE FRIEND--> 
+      <td> <button class="btn btn-danger"> Remove Friend </button> </td>
+    </tr>
+     {{/each}}
+  </tbody>
+</table>
+</div>
+</class>
+<script src="./js/friend-list.js"></script>
