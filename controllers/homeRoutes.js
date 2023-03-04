@@ -64,6 +64,8 @@ console.log(rawPlayCount[0][0]);
 if (rawPlayCount[0][0]) {
   user = { ...user, ...rawPlayCount[0][0] }
 } else {user.played_count=0}
+
+
 if (rawHS[0][0]) { 
   user = { ...user, ...rawHS[0][0] }
 }

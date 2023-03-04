@@ -26,3 +26,4 @@ const sequelize = require('../config/connection');
 // A potential seeding with user objects and Projects, bulk and individual. Requires 
 
 // seedDatabase();
+

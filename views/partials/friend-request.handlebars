@@ -2,21 +2,64 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+
   <h1>Friend Requests</h1>
   <div>
     <label for="receiverEmail">Receiver email:</label>
     <input type="email" id="receiverEmail" name="receiverEmail" required>
+
   </div>
-  <button id="sendFriendRequest">Send Friend Request</button>
-  
-  <button id="getPendingRequests">Get Pending Requests</button>
-  <div id="friend-requests-list-container" style="display:none;">
-    <h2>Pending Friend Requests</h2>
+
+  <button id="sendFriendRequest" class="d-flex mx-auto py-2 px-4 mt-3 mb-5 rounded-full text-white" type="submit">Send Friend Request</button>
+
+    <button id="getPendingRequests" class="d-inline-block mx-auto py-2 px-4 rounded-full text-white" type="submit"> 
+   View Friend Requests</button> 
+
+</div>
+<div id="friend-requests-list-container" style="display:none;">
+    <h3 class="text-white text-center">Pending Friend Requests</h3>
     <div id="pendingRequests">
-    <ul id="friend-requests-list"></ul>
+    <ul id="friend-requests-list">
+      
+    </ul>
     </div>
+    <button id="viewAddFriend" class="d-inline-block mx-auto py-2 px-4 mb-3 rounded-full text-white" type="submit">Add Friend</button>
   </div>
+
       <a class="viewFriends" href="/friends">View Friends</a>
+
+
+ 
+
+
+
+  
+<script>
+$(document).ready(function(){
+
+  $("#viewAddFriend").click(function(){
+    $("#friend-requests-list-container").hide();
+    $("#add-friends-container").show();
+     $("#getPendingRequests").show();
+  });
+
+  $("#getPendingRequests").click(function(){
+    $("#friend-requests-list-container").show();
+     $("#add-friends-container").hide();
+     $("#viewAddFriend").show();
+  });
+
+  if ( $( "#add-friends-container" ).is(":visible" ) ) {
+    $( "#viewAddFriend" ).hide();
+     $( "#getPendingRequests").show();
+} else {
+        $( "#getPendingRequests" ).hide(  );
+        $( "#viewAddFriend").show();
+       ;
+    }
+
+});
+</script>
 
 
 <script src="./js/friend-request.js"></script>

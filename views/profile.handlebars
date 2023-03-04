@@ -1,103 +1,101 @@
-@@ -1,55 +1,117 @@
-<div class="row">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,1,200" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,1,200" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,1,200" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;400&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,1,200" />
 <link rel="stylesheet" href="./css/profile.css">
 
 
-
+<body>
+<!--TOP ROW==================================================================-->
 
 
 <div class="row vw-100 d-flex justify-content-center pt-20">
-  <h1 class="col-7 text-center"> {{user.name}}</h1>
-  <h2 class="col-4 text-center"> Friend Leaderboard</h2>
-    <!--your profile stats-->
- <div class="col-7 d-flex justify-content-center">
 
-<!-- stats table -->
+    <!--global-->
 
-<div class="profile-box mx-auto bg-slate-200 w-100 pt-20 pr-20 pl-20 mt-10 rounded-lg">
-
-
-<div class="row w-100 justify-content-around align-content-around">
-
-  <div class="card d-flex my-20 col-4">
-  <div class="card-body">
-    <h5 class="card-title">Highscore</h5>
-    <p class="card-text">{{user.hs}}</p>
-    <a href="#" id="leave-comment"class="bg-blue-500 py-2 px-4 rounded-full text-white">Leave a comment</a>
-    <a href="#" id="view-comment" class="px-3 py-2">View Comments</a>
-  </div>
-</div>
-
- <div class="card d-flex my-20  col-4">
-  <div class="card-body">
-    <h5 class="card-title">Times Played</h5>
-    <p class="card-text">{{user.played_count}}</p>
-    <div class = "btn-group">
-    <a href="#" id="leave-comment" class="bg-blue-500 py-2 px-4 rounded-full text-white">Leave a comment</a>
-    <a href="#" id="view-comment" class="px-3 py-2">View Comments</a>
-    </div>
-  </div>
-</div>
-
-</div>
-
-<div class="row w-100 justify-content-around">
-
- <div class="card d-flex my-20  col-4">
-  <div class="card-body">
-    <h5 class="card-title">Coins</h5>
-    <p class="card-text">1000<!-- {{coins}}--> </p>
-    <a href="#" id="leave-comment" class="bg-blue-500 py-2 px-4 rounded-full text-white">Leave a comment</a>
-    <a href="#" id="view-comment" class="px-3 py-2">View Comments</a>
-  </div>
-</div>
-
- <div class="card d-flex my-20  col-4">
-  <div class="card-body">
-    <h5 class="card-title">Current Skin</h5>
-    <p class="card-text">pic<!-- {{currentskin}}--> </p>
-    <a href="#"  id="leave-comment" class="bg-blue-500 py-2 px-4 rounded-full text-white">Leave a comment</a>
-    <a href="#" id="view-comment" class="px-3 py-2">View Comments</a>
-  </div>
-</div>
-
-
-</div>
-</div>
-
-</div>
- <!--friends stats-->
-<div class="col-4 d-flex justify-content-center">
-  <div class="profile-box mx-auto bg-slate-200 w-100 pt-10 pr-20 pl-20 mt-10 rounded-lg">
-      <button id="loginpress"class="bg-violet-500 bg-hover-violet-800 py-2 px-4 mb-5  rounded-full text-white" type="submit">Add Friend</button>
-<table class="table table-hover table-dark">
+  <div class="col-3 d-flex justify-content-center">
+  <div id="offside" class="profile-box mx-auto bg-slate-200 w-100  pr-20 pl-20 mt-10 rounded-lg">
+    <h2 class="p-4 text-center text-white"> Global <span class="material-symbols-outlined">
+leaderboard
+</span></h2>
+    <table class="table table-hover table-dark">
   <thead>
     <tr>
-      <th scope="col"> Friend's Username </th>
+      <th scope="col"> Player </th>
       <th scope="col">Highscore </th>
     </tr>
+  </thead>
+  <tbody>
+    {{#each leaderboard as |leader|}}
+    <tr>
+      <td> {{leader.name}}</td>
+      <td> {{leader.hs}}</td>
+    </tr>
+   {{/each}}
+  </tbody>
+</table>
+</div>
+</div>
+<!-- profile -->
+ <div class="col-5 d-flex justify-content-center mx-2">
+<div id="boxes" class="profile-box mx-auto w-100 pr-20 pl-20 mt-10">
+<h1 class=" text-center p-4 text-white"> {{user.name}}</h1>
+<div class="row w-100 justify-content-around align-content-around">
+  <div id="card-body" class="card d-flex my-10 col-4">
+  <div class="card-body">
+    <h5 class="card-title text-white text-center">Highscore</h5>
+    <p class="card-text text-white text-center"> {{user.hs}} </p>
+  </div>
+</div>
+ <div  id="card-body" class="card d-flex my-10  col-4">
+  <div class="card-body">
+    <h5 class="card-title text-white text-center">Times Played</h5>
+    <p class="card-text text-white text-center"> {{user.played_count}} </p>
+  </div>
+</div>
+</div>
+<div class="row w-100 justify-content-around">
 
+ <div id="card-body" class="card d-flex my-10  col-4">
+  <div class="card-body">
+    <h5 class="card-title text-white text-center ">Coins</h5>
+    <p class="card-text text-white text-center"> {{user.currency}} </p>
+  </div>
+</div>
+ <div id="card-body" class="card d-flex my-10  col-4">
+  <div class="card-body">
+    <h5 class="card-title text-white text-center">Current Skin</h5>
+    <p class="card-text text-white text-center"> {{user.skin}} </p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+ <!--friends stats-->
+<div class="col-3 d-flex justify-content-center">
+  <div id="offside" class="profile-box mx-auto bg-slate-200 w-100 pr-20 pl-20 mt-10 pb-10">
+      <h2 class="p-4 text-center text-white">Friends <span class="material-symbols-outlined">
+leaderboard
+</span></h2>
+      
+<table class="table table-hover table-dark mb-4">
+  <thead>
+    <tr>
+      <th scope="col"> Friend </th>
+      <th scope="col">Highscore </th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      
       <td> friend<!-- {{friendhighscore}}--></td>
       <td> 2<!-- {{friendhighscore}}--></td>
     </tr>
@@ -115,8 +113,103 @@
     </tr>
   </tbody>
 </table>
+
+       
+</div>
 </div>
 </div>
 
+<!--BOTTOM ROW==================================================================-->
+
+<div class="row vw-100  justify-content-center pb-20 pt-5">
+
+
+<!--graph-->
+ <div class="col-4 d-flex justify-content-center mx-2">
+<div id="friend-partial" class="w-100 px-10 pt-4 pb-4">
+  <h3 class="text-center text-white"> L10 Performance</h3>
+ 
+  <div class="linechart">
+    <p class="text-white mb-7" id="score">Score</p>
+  <canvas id="myChart" class="w-100% mt-1"></canvas>
+  </div>
+ <p class="text-white text-center"> Last 10 Games Played </p>
+</div>
+  </div>
+
+
+    <!--comments-->
+ <div class="col-4 d-flex justify-content-center mx-2">
+<div id="friend-partial" class="w-100 px-20 pt-4 pb-4">
+  <h3 class="text-center text-white"> Comments</h3>
+  <div>
+  {{#each post.comments as |comment|}}
+  {{> comment-details}}
+  {{/each}}
+</div>
+{{#if loggedIn}}
+<div class="add-comment">
+  <h2 class="add-comment-title">Add a comment</h2>
+  <form class="form newcomment-form">
+    <div class="form-group">
+      <label for="content-newcomment"></label>
+      <input class="form-input" type="text" id="content-newcomment" />
+    </div>
+    <div class="form-group">
+      <button class="btn-submit" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+<script src="../js/new-comment.js"></script>
+{{/if}}
+
+</div>
+  </div>
+
+  <!--friends-->
+ <div class="col-3 d-flex justify-content-center mx-2 ">
+<div id="friend-partial" class="w-100 px-10 pt-4 pb-4 text-center">
+  {{> friend-request}}
+</div>
+  </div>
+
+
 </div>
 
+
+<script>
+  /*this is where values go*/
+var xValues = [1,2,3,4,5,6,7,8,9,10];
+/*this is where custom values go*/
+var yValues = [7,8,8,9,9,9,10,11,14,16];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+       color: "rgba(255, 255, 255, 1)",
+      fill: true,
+      lineTension: 0,
+      backgroundColor: "rgba(101, 93, 255,0.3)",
+      borderColor: "rgba(24, 193, 145, 1.0)",
+      data: yValues
+  }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ 
+        ticks: { fontColor: "white", min: 6, max:20}}],
+                xAxes: [{
+                    ticks: {
+                        fontColor: "white"
+                    }
+                }]
+    }
+  }
+});
+
+</script>
+
+</body>
