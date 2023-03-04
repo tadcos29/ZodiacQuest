@@ -1,8 +1,10 @@
-
+const userEmail = localStorage.getItem('email');
+console.log(userEmail)
 
 // Send friend request
 $('#sendFriendRequest').on('click', async function() {
-    const senderEmail = $('#senderEmail').val();
+  
+    const senderEmail = localStorage.getItem('email');
     const receiverEmail = $('#receiverEmail').val();
 
     try {
@@ -25,24 +27,30 @@ $('#sendFriendRequest').on('click', async function() {
   
   // Get pending friend requests
   $('#getPendingRequests').on('click', async function() {
-    const email = $('#receiverEmail').val();
-  
+    const email = localStorage.getItem('email');
     try {
       const response = await fetch(`/api/friendRequests/pending/${email}`);
       const data = await response.json();
       console.log(data);
+
+      const friendRequestsListContainer = document.getElementById('friend-requests-list-container');
+      friendRequestsListContainer.removeAttribute('style');
   
       $('#friend-requests-list').empty();
-      data.pendingRequests.forEach(request => {
-        const requestDiv = $(`
-          <div>
-            <p>From: ${request.senderEmail})</p>
-            <button class="acceptBtn" data-id="${request.id}">Accept</button>
-            <button class="rejectBtn" data-id="${request.id}">Reject</button>
-          </div>
-        `);
-        $('#friend-requests-list').append(requestDiv);
-      });
+      if (data.pendingRequests.length === 0) {
+        $('#friend-requests-list').append('<p>No pending friend requests</p>');
+      } else {
+        data.pendingRequests.forEach(request => {
+          const requestDiv = $(`
+            <div>
+              <p>From: ${request.senderEmail})</p>
+              <button class="acceptBtn" data-id="${request.id}">Accept</button>
+              <button class="rejectBtn" data-id="${request.id}">Reject</button>
+            </div>
+          `);
+          $('#friend-requests-list').append(requestDiv);
+        });
+      }
     } catch (err) {
       console.error(err);
       alert('Error getting pending friend requests');

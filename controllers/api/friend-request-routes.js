@@ -20,17 +20,13 @@ router.post('/friendRequests', async (req, res) => {
   }
 });
 
-router.get('/friendRequests/pending/:email', async (req, res) => {
+router.get('/friendRequests/pending/:receiverEmail', async (req, res) => {
   try {
-    const user = await User.findOne({ where: { email: req.params.email } });
-    if (!user) {
-      return res.status(404).send({ message: 'User not found' });
-    }
-
     const pendingRequests = await FriendRequest.findAll({
-      where: { receiverEmail: user.email, status: 'pending' },
-      include: [{ model: User, as: 'sender', attributes: ['name', 'email'] }]
-    });
+      where: { 
+        receiverEmail: req.params.receiverEmail, 
+        status: 'pending' 
+      }});
 
     return res.status(200).send({ pendingRequests });
   } catch (error) {
@@ -38,6 +34,7 @@ router.get('/friendRequests/pending/:email', async (req, res) => {
     return res.status(500).send({ message: 'Server error' });
   }
 });
+
 
 router.get('/friend-request/accepted/:email', async (req, res) => {
   try {
@@ -87,5 +84,22 @@ router.put('/friendRequests/:id/reject', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+router.get('/user/:email', async (req, res) => {
+  try {
+    const user = await User.findOne({
+      attributes: ['name'],
+      where: { email: req.params.email }
+    });
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    res.send(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
 
 module.exports = router;
