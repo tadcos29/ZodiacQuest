@@ -16,24 +16,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="./css/login.css">
-
+ 
 <body>
+
 <div class="row vh-100 vw-100">
 <!--title Section RIGHT SIDE-->
 
 
-<div id="title-section" class="col-6 d-flex h-100%">
-  <div id="bgimage" class="row mx-auto">
-  <img src="./img/mirage-star-background-2.svg" alt="" id="stars" class="col-2 mx-auto">
-<h1 class= "text-white text-center my-auto mx-auto col-6"> Zodiac Quest</h1>
-<img src="./img/mirage-star-background.svg" alt="" id="stars1" class="col-2 mx-auto">
+<div id="title-section" class="col-lg-6 col-sm-12  d-flex h-100%">
+  <div id="bgimage" class="row mx-auto vw-100">
+  <img src="./img/mirage-star-background-2.svg" alt="" id="stars" class="col-md-2 mx-auto d-none d-lg-none d-xl-inline-block d-md-inline-block">
+<h1 class= "text-white text-center my-auto mx-auto col-lg-12 col-xl-6 col-md-6 col-sm-8"> Zodiac Quest</h1>
+<img src="./img/mirage-star-background.svg" alt="" id="stars1" class="col-md-2 mx-auto d-none d-lg-none d-xl-inline-block d-md-inline-block">
 </div>
 
 </div>
 
 <!--Login Section RIGHT SIDE-->
 
-<div id="login-section" class="col-md-3 my-auto mx-auto bg-white"> 
+<div id="login-section" class="col-lg-3 col-sm-12 my-auto mx-auto bg-white"> 
   <h2>Login</h2>
   <!--Login-->
 
@@ -55,11 +56,11 @@
         <label for="password-login">Password</label>
       </div>
 
-      <div class="form-group">
-        <button id="loginpress"class="py-2 px-4 rounded-full text-white" type="submit">Login</button>
+      <div class="form-group" id="login-button">
+        <button id="loginpress" class="py-2 px-4 rounded-full text-white" type="submit">Login</button>
   
       </div>
-         <div class="form-group">
+         <div class="form-group" id="form-login">
         <p class="mb-0"> Not a member? </p>
  <button id="sign-up-toggle" type="button" class="btn"><u>Create Account</u></button>
       </div>
@@ -70,7 +71,7 @@
 </div>
 <!--Sign up-->
 
-  <div id="signup-section" class="d-none col-3 my-auto mx-auto">
+  <div id="signup-section" class="d-none col-lg-3 col-sm-12  my-auto mx-auto">
     <h2>Signup</h2>
 
     <form id="signup-form" class="form signup-form ">
@@ -101,11 +102,11 @@
         
       </div>
 
-      <div class="form-group">
+      <div class="form-group " id="signup-button">
         <button id="signuppress" class=" py-2 px-4 rounded-full text-white" type="submit">Signup</button>
        
       </div>
-      <div class="form-group">
+      <div class="form-group" id="form-login">
         <p class="mb-0"> Already a member? </p>
  <button id="sign-in-toggle" type="button" class="btn"><u>Login</u></button>
       </div>
