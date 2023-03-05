@@ -9,12 +9,12 @@ router.post('/', async (req, res) => {
       content: req.body.content,
       post_id: req.body.post_id,
       user_id: req.session.user_id,
+      recipient_id: req.body.recipient_id
     });
     res.status(200).json(dbCommentData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;

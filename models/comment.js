@@ -16,12 +16,9 @@ Comment.init(
       allowNull: false,
     },
     post_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'post',
-        key: 'id',
+        type: DataTypes.INTEGER,
+        // allowNull: false,
       },
-    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -29,6 +26,14 @@ Comment.init(
         key: 'id',
       },
     },
+    
+    recipient_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'user',
+          key: 'id',
+        },
+      }
   },
   {
     sequelize,
