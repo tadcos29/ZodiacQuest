@@ -61,7 +61,7 @@ console.log(rawGameData[0]);
 // patch-up job using serialise queries. It returns a nested array. Might be able to expand this query to retrieve more data.
 let lastTenRecord=[];
 if (rawGameData) {
-lastTenRecord = rawGameData[0].map(obj => obj.scores);
+lastTenRecord = rawGameData[0].map(obj => obj.scores)
 } else {lastTenRecord=[]}
 // patch-up job using serialise queries. It returns a nested array. Might be able to expand this query to retrieve more data.
 if (rawPlayCount[0][0]) {
@@ -94,7 +94,7 @@ console.log(user);
     // Pass serialized data and session flag into template
     res.render('friend-profile', { 
       // Let the profile page do with these variables what it will
-      user, leaderboard, comments, absoluteSession,
+      user, leaderboard, comments, absoluteSession, lastTenRecord,
       logged_in: req.session.logged_in 
     });
 
@@ -144,6 +144,7 @@ console.log(rawGameData[0]);
 let lastTenRecord=[];
 if (rawGameData) {
 lastTenRecord = rawGameData[0].map(obj => obj.scores);
+
 } else {lastTenRecord=[]}
 console.log('tenrecord');
 console.log(lastTenRecord);
