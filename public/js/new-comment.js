@@ -3,7 +3,7 @@ const post_id = window.location.toString().split('/')[
   
  const newcommentFormHandler = async (event) => {
     event.preventDefault();
-    console.log('state '+req.session.state);
+    // event.stopPropagation();
     const content = document.querySelector('#content-newcomment').value.trim();
   
     if (content) {
@@ -20,9 +20,21 @@ const post_id = window.location.toString().split('/')[
       }
     }
   };
-  
 
+  async function deletionHandler(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log('target');
+    console.log(event.target);
+
+
+  }
+  
   document
     .querySelector('.newcomment-form')
     .addEventListener('submit', newcommentFormHandler);
+
+    document
+    .querySelector('#friend-partial')
+    .addEventListener('click', deletionHandler);
   

@@ -19,6 +19,21 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  try {
+
+    console.log('state'+req.session.state);
+    const dbCommentData = await Comment.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+    res.status(200).json(dbCommentData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // router.post('/', async (req, res) => {
 //   try {
 //     const dbCommentData = await Comment.create({
