@@ -1,70 +1,147 @@
-const friends = async () => {
-    const email = localStorage.getItem('email');
-    const response = await  fetch(`/api/friendRequests/accepted/${email}`);
-    const data = await response.json();
-    console.log(data);
-    
-    $('#friend-list').empty();
-    if (data.pendingRequests.length === 0) {
-      $('#friend-list').append('<p>No friends</p>');
-    } else {
-      data.pendingRequests.forEach(request => {
-        if (request.senderEmail == email) {
-        const name =  fetch(`/api/user/${request.receiverEmail}`);
-        const data2 = name.json();
-        console.log(data2)
+async function displayFriendRequests() {
+  const email = localStorage.getItem('email');
+  const response = await fetch(`/api/friendRequests/accepted/${email}`);
+  const data = await response.json();
+  console.log(data);
+
+  const response2 = await fetch(`/api/friendRequests2/accepted/${email}`);
+  const data2 = await response2.json();
+  console.log(data2);
+
+  $('#friend-list2').empty();
+  const addedFriends = [];
+
+  if (data.acceptedRequests1.length == 0 && data2.acceptedRequests2.length == 0) {
+    $('#friend-list2').append('<p>No friends</p>');
+  } else {
+    let counter = 1;
+    for (const request of data.acceptedRequests1) {
+      const userResponse = await fetch(`/api/user/${request.senderEmail}`);
+      const userData = await userResponse.json();
+      console.log(userData);
+
+      const achievementResponse = await fetch(`/api/achievement/${userData.id}`);
+      const achievementData = await achievementResponse.json();
+      console.log(achievementData);
+
+      if (!addedFriends.includes(userData.name)) {
         const requestDiv = $(`
-          <div>
-            <p id="name"> ${data2} </p>
-            <p id="receiverEmail">${request.receiverEmail} </p>
-            <p id="createdAt"> ${request.createdAt} <p>
-            <button id="friendProile"> View Friend </button> 
-            <button id="removeFriend"> Remove Friend </button>
-          </div>
+          <tr id="friendInfo" value="${request.senderEmail} class="${counter}">
+            <td value="${request.senderEmail} id="friendName" > ${userData.name} </td>
+            <td> ${achievementData.hs} </td>
+            <td> ${request.createdAt} </td>
+            <<td> <button class="btn btn-danger" id="removeFriend" value="${request.senderEmail}"> Remove Friend </button> </td>
+          </tr>
         `);
-        $('#friend-list').append(requestDiv);
-      } else {
-        const name =  fetch(`/api/user/${request.senderEmail}`);
-        const data2 = name.json();
-        console.log(data2)
-        const requestDiv = $(`
-          <div>
-            <p id="name"> ${data2} </p>
-            <p id="senderEmail">${request.senderEmail} </p>
-            <p id="createdAt"> ${request.createdAt} <p>
-            <button id="friendProile"> View Friend </button> 
-            <button id="removeFriend"> Remove Friend </button>          
-          </div>
-        `);
-        $('#friend-list').append(requestDiv);
+        $('#friend-list2').append(requestDiv);
+        addedFriends.push(userData.name);
+        counter++ 
       }
-    });}}
+    }
+    for (const request of data2.acceptedRequests2) {
+      const userResponse = await fetch(`/api/user/${request.receiverEmail}`);
+      const userData = await userResponse.json();
+      console.log(userData);
 
-    $('#removeFriend').on('click', async function() {
-        const friendDiv = $(this).closest('div');
-        const receiverEmail = friendDiv.find('#receiverEmail').text();
-        const senderEmail = friendDiv.find('#senderEmail').text();
-        if (!senderEmail) {
-        const response = await fetch(`/api/friendRequests/${receiverEmail}/${email}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ status: 'rejected' })
-          });          
-            const data = await response.json();
-            console.log(data);
- 
+      const achievementResponse = await fetch(`/api/achievement/${userData.id}`);
+      const achievementData = await achievementResponse.json();
+      console.log(achievementData);
+
+      if (!addedFriends.includes(userData.name)) {
+        const requestDiv = $(`
+          <tr id="friendInfo" value="${request.receiverEmail}">
+            <td value="${request.receiverEmail}" id="friendName"> ${userData.name} </td>
+            <td> ${achievementData.hs} </td>
+            <td> ${request.createdAt} </td>
+            <<td> <button class="btn btn-danger" id="removeFriend" value="${request.receiverEmail}"> Remove Friend </button> </td>
+          </tr>
+        `);
+        $('#friend-list2').append(requestDiv);
+        addedFriends.push(userData.name); 
+      }
+    }
+  }
+  console.log(addedFriends)
+}
+
+
+$('body').on('click', '#removeFriend', async function(event) {
+      const friendEmail = event.target.value;
+      console.log(friendEmail)
+      const email = localStorage.getItem('email');
+      try {
+        const response = await fetch(`/api/friendRequests/${email}/${friendEmail}/reject`, { 
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+    
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
         } else {
-            const response = await fetch(`/api/friendRequests/${senderEmail}/${email}`, {
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ status: 'rejected' })
-              });
-              const data = await response.json();
-              console.log(data);
+          throw new Error('Failed to reject friend request');
         }
-    })
+      } catch (error) {
+        console.error(error);
+      }
+    });
 
+  $('#friendName').on('click', async function(event) {
+      const friendEmail = event.target.value;
+      console.log(friendEmail)
+
+      const userResponse = await fetch(`/api/user/${friendEmail}`);
+      const userData = await userResponse.json();
+      console.log(userData);
+
+      const achievementResponse = await fetch(`/api/achievement/${userData.id}`);
+      const achievementData = await achievementResponse.json();
+      console.log(achievementData);
+
+      const gameData = await fetch(`/api/game_data/${userData.id}`);
+      const gameDataData = await gameData.json();
+      console.log(gameDataData);
+
+      const requestDiv = $(`
+      <div class="col-5 d-flex justify-content-center mx-2">
+      <div id="boxes2" class="profile-box mx-auto w-100 pr-10 pl-10 mt-10">
+      <h1 class=" text-center p-4 text-white"> {{userData.name}}</h1>
+      <div class="row w-100 justify-content-around align-content-around">
+        <div id="card-body" class="card d-flex my-10 col-4">
+        <div class="card-body">
+          <h5 class="card-title text-white text-center">Highscore</h5>
+          <p class="card-text text-white text-center"> {{achievementData.hs}} </p>
+        </div>
+      </div>
+       <div  id="card-body" class="card d-flex my-10  col-4">
+        <div class="card-body">
+          <h5 class="card-title text-white text-center">Times Played</h5>
+          <p class="card-text text-white text-center"> {{gameDataData.played_count}} </p>
+        </div>
+      </div>
+      </div>
+      <div class="row w-100 justify-content-around">
+      
+       <div id="card-body" class="card d-flex my-10  col-4">
+        <div class="card-body">
+          <h5 class="card-title text-white text-center ">Coins</h5>
+          <p class="card-text text-white text-center"> {{achievementData.currency}} </p>
+        </div>
+      </div>
+       <div id="card-body" class="card d-flex my-10  col-4">
+        <div class="card-body">
+          <h5 class="card-title text-white text-center">Current Skin</h5>
+          <p class="card-text text-white text-center"> {{achievementData.skin}} </p>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    `);
+    $('#friendProfileInfo').append(requestDiv);
+  })
+
+displayFriendRequests()
+$('#viewFriends').on('click', () => {displayFriendRequests();});

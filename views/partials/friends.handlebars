@@ -9,7 +9,7 @@
       <th scope="col"> Remove Friend </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="friend-list2">
       {{#each user.friend as |friend|}}
     <tr>
       <td> example {{friend.name}} </td>
@@ -21,6 +21,8 @@
      {{/each}}
   </tbody>
 </table>
+    <button id="viewFriends" class="d-inline-block mx-auto py-2 px-4 rounded-full text-white" type="submit"> 
+   View Friends</button> 
 </div>
 </class>
 <script src="./js/friend-list.js"></script>

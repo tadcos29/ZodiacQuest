@@ -16,5 +16,6 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get(`/user`)
 
 module.exports = router;
