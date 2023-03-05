@@ -9,6 +9,22 @@
 
     <p class="card-info">By {{sender_name}} on {{format_date created_at}}</p>
     {{#if deletable}}
-      delete button
+       <a href="#" onclick="deleteComment({{id}})">Delete</a>
+
     {{/if}}
   </div>
+<script>
+async function deleteComment(id) {
+  try {
+    const response = await fetch(`/api/comment/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await response.json();
+        document.location.reload(); 
+  
+  } catch (error) {
+    console.error('Error deleting comment', error);
+  }
+}
+</script>
