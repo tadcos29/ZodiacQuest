@@ -1,29 +1,27 @@
 const sequelize = require('../config/connection');
-// const { User } = require('../models');
+const { User, Achievement, Comment } = require('../models');
 
-// const userData = require('./userData.json');
-// const projectData = require('./projectData.json');
+const userData = require('./userData.json');
+const achievementData = require('./achievementData.json');
+const commentData = require('./commentData.json');
 
-
-// const seedDatabase = async () => {
-//     await sequelize.sync({ force: true });
-  
-//     const users = await User.bulkCreate(userData, {
-//       individualHooks: true,
-//       returning: true,
-//     });
-  
-//     for (const project of projectData) {
-//       await Project.create({
-//         ...project,
-//         user_id: users[Math.floor(Math.random() * users.length)].id,
-//       });
-//     }
-  
-//     process.exit(0);
-//   };
+const seedDatabase = async () => {
+   const seedUsers = await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const seedAchieves= await Achievement.bulkCreate(achievementData, {
+    individualHooks: true,
+    returning: true,
+  });
+  const seedComments= await Comment.bulkCreate(commentData, {
+    individualHooks: true,
+    returning: true,
+  });
+    process.exit(0);
+  };
 
 // A potential seeding with user objects and Projects, bulk and individual. Requires 
 
-// seedDatabase();
+seedDatabase();
 

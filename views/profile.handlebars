@@ -118,16 +118,16 @@ leaderboard
 <div id="friend-partial" class="w-100 px-20 pt-4 pb-4">
   <h3 class="text-center text-white"> Comments</h3>
   <div>
-  {{#each post.comments as |comment|}}
+  {{#each comments as |comment|}}
   {{> comment-details}}
   {{/each}}
 </div>
-{{#if loggedIn}}
+{{!-- {{#if loggedIn}} --}}
 <div class="add-comment">
   <h2 class="add-comment-title">Add a comment</h2>
   <form class="form newcomment-form">
     <div class="form-group">
-      <label for="content-newcomment"></label>
+      <label form="content-newcomment"></label>
       <input class="form-input" type="text" id="content-newcomment" />
     </div>
     <div class="form-group">
@@ -135,8 +135,8 @@ leaderboard
     </div>
   </form>
 </div>
-<script src="../js/new-comment.js"></script>
-{{/if}}
+<script src="./js/new-comment.js"></script>
+{{!-- {{/if}} --}}
 
 </div>
   </div>
@@ -152,7 +152,7 @@ leaderboard
   /*this is where values go*/
 var xValues = [1,2,3,4,5,6,7,8,9,10];
 /*this is where custom values go*/
-var yValues = [7,8,8,9,9,9,10,11,14,16];
+var yValues = [{{lastTenRecord}}];
 
 new Chart("myChart", {
   type: "line",
@@ -171,7 +171,7 @@ new Chart("myChart", {
     legend: {display: false},
     scales: {
       yAxes: [{ 
-        ticks: { fontColor: "white", min: 6, max:20}}],
+        ticks: { fontColor: "white", min: 6, max:200}}],
                 xAxes: [{
                     ticks: {
                         fontColor: "white"
