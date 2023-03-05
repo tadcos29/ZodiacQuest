@@ -118,16 +118,16 @@ leaderboard
 <div id="friend-partial" class="w-100 px-20 pt-4 pb-4">
   <h3 class="text-center text-white"> Comments</h3>
   <div>
-  {{#each post.comments as |comment|}}
+  {{#each comments as |comment|}}
   {{> comment-details}}
   {{/each}}
 </div>
-{{#if loggedIn}}
+{{!-- {{#if loggedIn}} --}}
 <div class="add-comment">
   <h2 class="add-comment-title">Add a comment</h2>
   <form class="form newcomment-form">
     <div class="form-group">
-      <label for="content-newcomment"></label>
+      <label form="content-newcomment"></label>
       <input class="form-input" type="text" id="content-newcomment" />
     </div>
     <div class="form-group">
@@ -135,8 +135,8 @@ leaderboard
     </div>
   </form>
 </div>
-<script src="../js/new-comment.js"></script>
-{{/if}}
+<script src="./js/new-comment.js"></script>
+{{!-- {{/if}} --}}
 
 </div>
   </div>

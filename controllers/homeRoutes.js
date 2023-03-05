@@ -55,30 +55,41 @@ let user = userData.get({ plain: true });
 const rawPlayCount = await sequelize.query(`select count(game_data.id) as 'played_count' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.session.user_id} GROUP BY user.id;`);
 const rawHS = await sequelize.query(`select achievement.hs as 'hs', achievement.currency as 'currency', achievement.skin as 'skin' from user JOIN achievement on achievement.user_id=user.id WHERE user.id=${req.session.user_id}`);
 const rawLeaderBoard = await sequelize.query(`SELECT user.name as 'name', achievement.hs as 'hs' FROM user JOIN achievement on achievement.user_id=user.id ORDER BY achievement.hs DESC;`);
+const rawComments = await sequelize.query(`select rcp.name as 'recipient_name', snd.name as 'sender_name', comment.content as 'content', comment.created_at as 'created_at' from user rcp JOIN comment on rcp.id=comment.recipient_id JOIN user snd ON  comment.user_id = snd.id WHERE rcp.id=${req.session.user_id}  ORDER BY comment.id DESC LIMIT 10;`);
 console.log('lb')
 let leaderboard=rawLeaderBoard[0];
 console.log(leaderboard);
 console.log('rawplay');
 console.log(rawPlayCount[0][0]);
+console.log('rawComment');
+console.log(rawComments[0]);
 // patch-up job using serialise queries. It returns a nested array. Might be able to expand this query to retrieve more data.
 if (rawPlayCount[0][0]) {
   user = { ...user, ...rawPlayCount[0][0] }
 } else {user.played_count=0}
 
-
 if (rawHS[0][0]) { 
   user = { ...user, ...rawHS[0][0] }
 }
+
+if (rawComments[0][0]) { 
+  console.log(rawComments[0]);
+  comments = rawComments[0];
+  console.log('commentsoutput');
+  console.log(comments);
+} else {comments=[]}
+
 // user.hs = rawHS[0][0].hs;
 // user.skin=rawHS[0][0].skin;
 // user.currency=rawHS[0][0].currency; // deconstruct that once there are more fields
 
 // console.log(games);
+console.log('user');
 console.log(user);
     // Pass serialized data and session flag into template
     res.render('profile', { 
       // Let the profile page do with these variables what it will
-      user, leaderboard,
+      user, leaderboard, comments,
       logged_in: req.session.logged_in 
     });
 

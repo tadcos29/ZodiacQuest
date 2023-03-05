@@ -52,7 +52,7 @@ const commentdata = [
   {
     content: 'Comment 9',
     post_id: 2,
-    user_id: 3,
+    user_id: 2,
     recipient_id: 1,
   },
 ];

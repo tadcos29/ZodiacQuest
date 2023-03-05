@@ -1,6 +1,6 @@
 
   <div class="card">
-    <h3 class="card-comment-title">Comment on this post</h3>
+    {{!-- <h3 class="card-comment-title">Comment on this post</h3> --}}
     <h3 class="card-content">{{content}}</h3>
-    <p class="card-info">By {{user.name}} on {{format_date createdAt}}</p>
+    <p class="card-info">By {{sender_name}} on {{format_date created_at}}</p>
   </div>
