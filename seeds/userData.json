@@ -1,0 +1,20 @@
+
+[
+{
+  "name": "John Doe",
+  "email": "j@j.com",
+  "password": "$2b$10$05MasLBDZEKvv4ZsIf0LSOw3GGIwAQuEOY/TNL7IvavdT0DZA6o0C"
+},
+{
+  "name": "Mary Doe",
+  "email": "m@m.com",
+  "password": "$2b$10$BfkssAoDxsnh/0PYTJLwJeZy3dZadEplgm7eMBOpF2kyNDZnEOndy"
+
+},
+{
+  "name": "Tom Doe",
+  "email": "t@t.com",
+  "password": "$2b$10$FjWVJHvkWz7A/8jx/1J3UumNTwd7hBqDwPLpobFFTunhhnW.rWIOG"
+
+}
+]

@@ -2,6 +2,19 @@ const User = require('./User');
 const GameData = require('./GameData');
 const Achievement = require('./Achievement');
 const Comment = require('./Comment');
+const FriendRequest = require ('./friendRequest');
+
+
+User.hasMany(FriendRequest, {
+  foreignKey: 'senderEmail',
+  onDelete: 'CASCADE'
+});
+
+User.hasMany(FriendRequest, {
+  foreignKey: 'receiverEmail:',
+  onDelete: 'CASCADE'
+})
+
 
 User.hasMany(GameData, {
   foreignKey: 'user_id',
@@ -43,4 +56,4 @@ Comment.belongsTo(User, {
 });
 
 // Various database relationships go here
-module.exports = { User, GameData, Achievement, Comment};
+module.exports = { User, GameData, Achievement, Comment, FriendRequest};

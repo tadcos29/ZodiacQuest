@@ -3,7 +3,7 @@ const post_id = window.location.toString().split('/')[
   
  const newcommentFormHandler = async (event) => {
     event.preventDefault();
-  
+    console.log('state '+req.session.state);
     const content = document.querySelector('#content-newcomment').value.trim();
   
     if (content) {

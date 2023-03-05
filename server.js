@@ -10,7 +10,6 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 // import the pre-configured sequelize (dotenv and all) from connection
 const sequelize = require('./config/connection');
-const seedComments = require('./seeds/commentData');
 
 // Create a new sequelize store using the express-session package
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -45,8 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // plugging in the routes from controllers, which have been required into an object, into app
 app.use(routes);
 // sync database
-seedComments();
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
-
