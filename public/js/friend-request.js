@@ -62,7 +62,7 @@ $('#sendFriendRequest').on('click', async function() {
     const id = $(this).data('id');
   
     try {
-      const response = await fetch(`/api/friendRequests/${id}/accept`, {
+      const response = await fetch(`/api/friendRequests/${id}/accepted`, {
         method: 'PUT'
       });
   
@@ -80,7 +80,7 @@ $('#sendFriendRequest').on('click', async function() {
     const id = $(this).data('id');
   
     try {
-      const response = await fetch(`/api/friendRequests/${id}/reject`, {
+      const response = await fetch(`/api/friendRequests/${id}/rejected`, {
         method: 'PUT'
       });
   

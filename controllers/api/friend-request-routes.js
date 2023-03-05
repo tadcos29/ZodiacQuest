@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const FriendRequest = require('../../models/friendRequest');
 const User = require('../../models/User');
+const Achievement = require('../../models/Achievement');
+const GameData = require('../../models/Achievement');
+
+
 
 // Send a friend request
 
@@ -36,19 +40,30 @@ router.get('/friendRequests/pending/:receiverEmail', async (req, res) => {
 });
 
 
-router.get('/friend-request/accepted/:email', async (req, res) => {
+router.get('/friendRequests/accepted/:email', async (req, res) => {
   try {
-    const user = await User.findOne({ where: { email: req.params.email } });
-    if (!user) {
-      return res.status(404).send({ message: 'User not found' });
-    }
+    const acceptedRequests1 = await FriendRequest.findAll({
+      where: {
+        status: 'accepted',
+        receiverEmail: req.params.email, 
+      } });
 
-    const pendingRequests = await FriendRequest.findAll({
-      where: { receiverEmail: user.email, status: 'pending' },
-      include: [{ model: User, as: 'sender', attributes: ['name', 'email'] }]
-    });
+    return res.status(200).send({ acceptedRequests1 });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send({ message: 'Server error' });
+  }
+});
 
-    return res.status(200).send({ pendingRequests });
+router.get('/friendRequests2/accepted/:email', async (req, res) => {
+  try {
+    const acceptedRequests2 = await FriendRequest.findAll({
+      where: {
+        status: 'accepted',
+        senderEmail: req.params.email, 
+      } });
+
+    return res.status(200).send({ acceptedRequests2 });
   } catch (error) {
     console.error(error);
     return res.status(500).send({ message: 'Server error' });
@@ -56,7 +71,7 @@ router.get('/friend-request/accepted/:email', async (req, res) => {
 });
 
 // Accept a friend request
-router.put('/friendRequests/:id/accept', async (req, res) => {
+router.put('/friendRequests/:id/accepted', async (req, res) => {
   try {
     const { id } = req.params;
     const friendRequest = await FriendRequest.findByPk(id);
@@ -71,7 +86,7 @@ router.put('/friendRequests/:id/accept', async (req, res) => {
 });
 
 // Reject a friend request
-router.put('/friendRequests/:id/reject', async (req, res) => {
+router.put('/friendRequests/:id/rejected', async (req, res) => {
   try {
     const { id } = req.params;
     const friendRequest = await FriendRequest.findByPk(id);
@@ -88,7 +103,6 @@ router.put('/friendRequests/:id/reject', async (req, res) => {
 router.get('/user/:email', async (req, res) => {
   try {
     const user = await User.findOne({
-      attributes: ['name'],
       where: { email: req.params.email }
     });
     if (!user) {
@@ -101,5 +115,58 @@ router.get('/user/:email', async (req, res) => {
   }
 });
 
+router.get('/achievement/:id', async (req, res) => {
+  try {
+    const achievement = await Achievement.findOne({
+      where: { user_id: req.params.id }
+    });
+    if (!achievement) {
+      return res.status(404).send('User not found');
+    }
+    res.send(achievement);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+router.get('/game_data/:id', async (req, res) => {
+  try {
+    const gameData = await GameData.findOne({
+      where: { user_id: req.params.id }
+    });
+    if (!achievement) {
+      return res.status(404).send('User not found');
+    }
+    res.send(achievement);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+router.put('/friendRequests/:senderEmail/:receiverEmail/reject', async (req, res) => {
+  try {
+    const request = await FriendRequest.findOne({
+      where: {
+        senderEmail: [req.params.senderEmail, req.params.receiverEmail],
+        receiverEmail: [req.params.senderEmail, req.params.receiverEmail], 
+        status: 'accepted'
+      }
+    });
+
+    if (request === null) {
+      throw new Error('No accepted friend request found');
+    }
+
+    request.status = 'rejected';
+    await request.save();
+
+    return res.status(200).json({ message: 'Friend request rejected', request });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+});
 
 module.exports = router;
