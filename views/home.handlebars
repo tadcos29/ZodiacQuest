@@ -26,12 +26,15 @@
 </div>
 
 
-<div class="d-block">
+{{!-- <div class="d-block">
+  {{> custom-phaser}}
     <div class="col-2 mx-auto my-20">
     {{> select-sprite}}
+   </div>  
+  <div class="col-2 mx-auto my-20">
+      {{> instructions}}
    </div>
-    {{> custom-phaser}}
-    {{> instructions}}
+    
      
 </div>
 
@@ -44,11 +47,10 @@
 
 </div>
 </body>
-{{!-- <script>
+<script>
 $(document).ready(function(){
 
   $("#selectSprite").click(function(){
-    $( {{> custom-phaser}} ).hide();
     $(  {{> instructions}} ).hide();
      $( {{> select-sprite}} ).show();
   });
@@ -56,13 +58,53 @@ $(document).ready(function(){
   $("#viewInstructions").click(function(){
     $({{> instructions}}).show();
      $({{> select-sprite}}).hide();
-     $({{> custom-phaser}}).hide();
+
   });
 
-  if ( $( {{> custom-phaser}} ).is(":visible" ) ) {
-    $({{> select-sprite}}).hide();
-      $(  {{> instructions}} ).hide();
-} 
-    
 });
 </script> --}}
+
+
+<div class="d-block">
+  {{> custom-phaser}}
+  <div class="col-2 mx-auto my-20">
+    <a id="selectSprite" href="#">Select Sprite</a>
+  </div>
+  <div class="col-2 mx-auto my-20">
+    <a id="viewInstructions" href="#">View Instructions</a>
+  </div>
+</div>
+
+<div>
+  {{#if logged_in}}
+    <p>Logged in as: {{user.name}}</p>
+  {{/if}}
+</div>
+
+<div id="instructions-container">
+  {{> instructions}}
+</div>
+
+<div id="sprites-container">
+  {{> select-sprite}}
+</div>
+
+<script>
+  $(document).ready(function(){
+    // Initially hide the select sprite partial
+    $('#sprites-container').hide();
+
+    $("#selectSprite").click(function(event){
+      event.preventDefault();
+      $('#instructions-container').hide();
+      $('#sprites-container').show();
+    });
+
+    $("#viewInstructions").click(function(event){
+      event.preventDefault();
+      $('#sprites-container').hide();
+      $('#instructions-container').show();
+    });
+  });
+</script>
+
