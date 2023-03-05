@@ -9,7 +9,13 @@
     --greyDark-1: #92acc4;
     --greyDark-2: #5a768f;
   }
+ 
 /* basic stylings ------------------------------------------ */
+html, body {margin: 0; height: 100%; overflow: hidden}
+body {
+  
+background-color: rgb(255, 255, 255);
+}
 p {
     font-family: 'Quantico', sans-serif; 
     padding-left: 12px;
@@ -167,19 +173,13 @@ label 				 {
   to 	{ width:0; background:transparent; }
 }
 
-/* titlestyle ================  */
+/* titlestyle ================   put the following below in readme
+<a href="https://www.freepik.com/free-vector/meteors-rocky-asteroids-flying-outer-space_36330966.htm#query=space&position=13&from_view=search&track=sph">Image by upklyak</a> on Freepik*/
 
 
 #title-section {
-background: linear-gradient(-45deg,#000000,
-#060a21,
-#1b275a,
-#5854a9,
-#7cbac9);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh;
-
+  background-image: url("../img/bg2.jpg");
+ background-size: cover;
 }
 
 

@@ -34,6 +34,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+
 // router.post('/', async (req, res) => {
 //   try {
 //     const dbCommentData = await Comment.create({
@@ -47,5 +48,8 @@ router.delete('/:id', async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // });
+
+router.get(`/User`)
+
 
 module.exports = router;
