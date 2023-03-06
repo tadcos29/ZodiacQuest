@@ -1,7 +1,7 @@
 const User = require('./User');
 const GameData = require('./GameData');
 const Achievement = require('./Achievement');
-const Comment = require('./Comment');
+const Comment = require('./comment');
 const FriendRequest = require ('./friendRequest');
 
 
