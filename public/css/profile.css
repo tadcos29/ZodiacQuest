@@ -242,3 +242,7 @@ body {
 #viewAddFriend {
     margin-top: 10px;
 }
+
+#createdAt {
+    font-size: 10px;
+}

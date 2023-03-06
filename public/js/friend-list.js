@@ -25,7 +25,7 @@ async function displayFriendRequests() {
           <tr id="friendInfo${counter}" value="${userData.id}" class="friendInfo4Redirect">
             <td> ${userData.name} </td>
             <td> ${achievementData.hs} </td>
-            <td> ${request.createdAt} </td>
+            <td id="createdAt"> ${request.createdAt} </td>
             <<td> <button class="btn btn-danger" id="viewFriendProfileButton" value="${userData.id}"> View Friend </button> </td>
             <<td> <button class="btn btn-danger" id="removeFriend" value="${request.senderEmail}"> Remove Friend </button> </td>
           </tr>
@@ -48,7 +48,7 @@ async function displayFriendRequests() {
           <tr id="friendInfo2${counter2}" value="${userData.id}" class="friendInfo4Redirect">
             <td> ${userData.name} </td>
             <td> ${achievementData.hs} </td>
-            <td> ${request.createdAt} </td>
+            <td id="createdAt"> ${request.createdAt} </td>
             <<td> <button class="btn btn-danger" id="viewFriendProfileButton" value="${userData.id}"> View Friend </button> </td>
             <<td> <button class="btn btn-danger" id="removeFriend" value="${request.receiverEmail}"> Remove Friend </button> </td>
           </tr>
