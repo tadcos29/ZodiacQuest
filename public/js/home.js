@@ -45,6 +45,7 @@ $(document).on('click', '#picker-confirm', async function(){
         } catch (error) {
     console.error(error)
   }
+  window.location.reload()
 
 })
 
