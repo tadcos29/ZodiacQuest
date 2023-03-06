@@ -220,3 +220,25 @@ body {
         margin-bottom:50px;
     }
 }
+
+
+#viewFriendProfileButton{
+    color: white;
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+}
+
+#viewFriends {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--primary);  
+    font-size: .8rem;
+}
+#viewFriends:hover {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: #4f48d8;  
+    font-size: .8rem;
+}
+
+#viewAddFriend {
+    margin-top: 10px;
+}
