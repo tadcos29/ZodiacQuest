@@ -11,9 +11,9 @@ class Intro {
         this.passedData.skin = data.skin ? data.skin : 1;
        }
        let startText = 'Press Space to Begin'
-        let nameLabel = this.add.text(250,80,'Zodiac Quest', {font: '50px Arial', fill: '#fff'});
+        let nameLabel = this.add.text(400,80,'Zodiac Quest', {font: '50px Arial', fill: '#fff'});
         nameLabel.setOrigin(0.5,0.5);
-        let startPrompt = this.add.text(250, 260, startText, {font: '25px Arial', fill: '#fff'});
+        let startPrompt = this.add.text(400, 260, startText, {font: '25px Arial', fill: '#fff'});
         startPrompt.setOrigin(0.5,0.5);
         this.spaceBar = this.input.keyboard.addKey('space');
        

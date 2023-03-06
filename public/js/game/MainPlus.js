@@ -25,7 +25,8 @@ class MainPlus {
             this.load.image('bg1', './img/game-assets/bg1.jpg');
         this.load.image('space-cave-tileset', './img/game-assets/space-cave-tileset.png');
         this.load.tilemapTiledJSON('stepbystep', './img/game-assets/zodiacmap.json');
-
+        this.load.spritesheet('zodiac-enemy', 'img/game-assets/enemytiles.png',
+            { frameWidth: 32, frameHeight: 32, endFrame:11 });
         // this.load.image('wallH', 'img/game-assets/wallHorizontal.png');
         // this.load.image('wallV', 'img/game-assets/wallVertical.png');
         this.load.image('coin','img/game-assets/coin.png');
@@ -72,17 +73,30 @@ class MainPlus {
             repeat: -1
         });
 
+        // enemy
+        this.anims.create({
+            key: 'enemy-flight',
+            frames: this.anims.generateFrameNumbers('zodiac-enemy', { start: 0, end: 11 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
         this.player.body.gravity.y=500;
         this.coin = this.physics.add.sprite(60, 130,'coin')
         this.arrow = this.input.keyboard.createCursorKeys();
-        this.scoreText = this.add.text(36, 16, 'Score: 0', { font: '32px Quantico', fill: '#fff' });
+        this.scoreText = this.add.text(56, 16, 'Score: 0', { font: '32px Quantico', fill: '#fff' });
         this.scoreText.setDepth(1);
-        this.currencyText = this.add.text(36, 54, 'Currency Gained: 0', { font: '32px Quantico', fill: '#f00' });
+        this.currencyText = this.add.text(56, 54, 'Currency Gained: 0', { font: '32px Quantico', fill: '#f00' });
         this.currencyText.setDepth(1);
         this.score=0;
         this.currency=0;
         this.createWorld();
         this.physics.add.collider(this.player, this.walls);
+        // let zodiacDance=this.anims.get('enemy-flight');
+        // this.enemies.children.iterate(function (child) {
+        //      child.anims.animation=zodiacDance;
+        //         });
+
         this.fancyStars = this.physics.add.group({
             key: 'star',
             repeat: 8,
@@ -124,10 +138,15 @@ class MainPlus {
             this.takeCoin();
         }
         this.fancyStars.children.iterate(function (child) {
-            if (child.y > 600) {
+            if (child.y > 500) {
                 child.disableBody(true, true);
             }
         });
+        let zodiacDance=this.anims.get('enemy-flight');
+        this.enemies.children.iterate(function (child) {
+             child.anims.play('enemy-flight', true);
+                });
+
     }
     
     // methods
@@ -203,7 +222,8 @@ class MainPlus {
         this.updateCoinPosition();
     }
     addEnemy() {
-    let enemy = this.enemies.create(Phaser.Math.RND.pick([250,350]), -10, 'enemy');
+    let enemy = this.enemies.create(Phaser.Math.RND.pick([250,350]), -10, 'zodiac-enemy');
+    // enemy.setTint(200, 0, 0);
     enemy.body.gravity.y=500;
     enemy.body.velocity.x=Phaser.Math.RND.pick([-120,120]);
     enemy.body.bounce.x = 1;
