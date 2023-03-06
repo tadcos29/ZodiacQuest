@@ -191,3 +191,32 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  @media only screen and (max-width: 1500px) and (min-width: 1400px)  {
+    #friends-box {
+      width: 800px;
+    }
+    #profile-box {
+        width:900px
+    }
+    #global-box {
+        width:400px
+    }
+
+}
+
+@media only screen and (max-width: 1030px) and (min-width: 1020px)  {
+    #graph-box {
+        margin-bottom:50px;
+    }
+
+}
+
+@media only screen and (max-width:770px) and (min-width: 300px)  {
+    #graph-box {
+        margin-bottom:50px;
+    }
+    #comment-box {
+        margin-bottom:50px;
+    }
+}
