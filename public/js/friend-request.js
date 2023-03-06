@@ -45,8 +45,8 @@ $('#sendFriendRequest').on('click', async function() {
           const requestDiv = $(`
           <tr>
             <td style="color: white;"> ${request.senderEmail} </td>
-            <td> <button class="btn btn-success" class="acceptBtn" data-id="${request.id}">Accept</button></td>
-            <td> <button class="btn btn-danger" class="rejectBtn" data-id="${request.id}">Reject</button></td>
+            <td> <button class="btn btn-success acceptBtn" id="acceptBtn" data-id="${request.id}">Accept</button></td>
+            <td> <button class="btn btn-danger rejectBtn" id="rejectBtn" data-id="${request.id}">Reject</button></td>
           </tr>
           `);
           $('#friend-requests-list').append(requestDiv);
