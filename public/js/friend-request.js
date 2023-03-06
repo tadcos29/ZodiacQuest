@@ -142,7 +142,7 @@ async function displayFriendRequests() {
             <tr id="friendInfo" value="${userData.id}" class="friendInfo4Redirect">
               <td> ${userData.name} </td>
               <td> ${achievementData.hs} </td>
-              <td> ${request.createdAt} </td>
+              <td id="createdAt"> ${request.createdAt} </td>
               <<td> <button class="btn btn-danger" id="viewFriendProfileButton" value="${userData.id}"> View Friend </button> </td>
             </tr>
           `);
