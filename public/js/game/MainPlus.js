@@ -19,9 +19,15 @@ class MainPlus {
             { frameWidth: 32, frameHeight: 32 });
             this.load.spritesheet('player-idle-3', 'img/game-assets/Owlet_Monster_Idle_4.png',
             { frameWidth: 32, frameHeight: 32 });
-       
-        this.load.image('wallH', 'img/game-assets/wallHorizontal.png');
-        this.load.image('wallV', 'img/game-assets/wallVertical.png');
+            // this.load.image('tileset', '/img/game-assets/tileset.png');
+            // this.load.tilemapTiledJSON('map', '/img/game-assets/map.json');
+        
+            this.load.image('bg1', './img/game-assets/bg1.jpg');
+        this.load.image('space-cave-tileset', './img/game-assets/space-cave-tileset.png');
+        this.load.tilemapTiledJSON('stepbystep', './img/game-assets/zodiacmap.json');
+
+        // this.load.image('wallH', 'img/game-assets/wallHorizontal.png');
+        // this.load.image('wallV', 'img/game-assets/wallVertical.png');
         this.load.image('coin','img/game-assets/coin.png');
         this.load.image('enemy','img/game-assets/enemy.png');
         this.load.image('star', './img/game-assets/star.png');
@@ -47,9 +53,12 @@ class MainPlus {
 
     //     this.scale.setGameSize(500, 340);
     // this.scale.resize(800, 600);
+   
+       
+        this.bg1 = this.add.image(-5, -5, 'bg1').setOrigin(0,0);
         this.player=this.physics.add.sprite(250, 170, 'player');
         this.enemies = this.physics.add.group();
-       // this.addStars();
+               // this.addStars();
         this.anims.create({
             key: 'player-idle',
             frames: this.anims.generateFrameNumbers('player-idle-'.concat(this.skin), { start: 0, end: 4 }),
@@ -77,6 +86,7 @@ class MainPlus {
             callback:() => this.addEnemy(),
             loop:true,
         });
+        
         this.events.on('gameover', this.gameOver, this);
     }
  
@@ -123,7 +133,7 @@ class MainPlus {
         
         if (this.arrow.up.isDown) {
            // this.player.setVelocityY(-160);
-            if (this.player.body.touching.down) {
+            if (this.player.body.blocked.down) {
                 this.player.setVelocityY(-320);
             }
            // this.player.angle--;
@@ -138,20 +148,30 @@ class MainPlus {
     }
     
     createWorld() {
-        this.walls = this.physics.add.staticGroup();
-        this.walls.create(10,170, 'wallV');
-        this.walls.create(490,170, 'wallV');
+        // this.walls = this.physics.add.staticGroup();
+        // this.walls.create(10,170, 'wallV');
+        // this.walls.create(490,170, 'wallV');
 
-        this.walls.create(50,10, 'wallH');
-        this.walls.create(450,10, 'wallH');
-        this.walls.create(50,330, 'wallH');
-        this.walls.create(450,330, 'wallH');
+        // this.walls.create(50,10, 'wallH');
+        // this.walls.create(450,10, 'wallH');
+        // this.walls.create(50,330, 'wallH');
+        // this.walls.create(450,330, 'wallH');
 
         
-        this.walls.create(0,170, 'wallH');
-        this.walls.create(500,170, 'wallH');
-        this.walls.create(250,90, 'wallH');
-        this.walls.create(250,250, 'wallH');
+        // this.walls.create(0,170, 'wallH');
+        // this.walls.create(500,170, 'wallH');
+        // this.walls.create(250,90, 'wallH');
+        // this.walls.create(250,250, 'wallH');
+        this.fancyMap = this.add.tilemap('stepbystep');
+        // this.map.tileWidth=16;
+        // this.map.tileHeight=16;
+        this.fancyTileset = this.fancyMap.addTilesetImage('space-cave-tileset','space-cave-tileset',
+         // 16, 16,0,0
+         );
+        this.walls = this.fancyMap.createStaticLayer('Ground', this.fancyTileset)
+    // the player will collide with this layer
+        this.walls.setCollisionByExclusion([-1]);
+
 
     } // create world
 

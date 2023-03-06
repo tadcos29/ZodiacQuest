@@ -2,6 +2,7 @@ async function runGame() {
 
     let game = new Phaser.Game ( {
         width: 800, height: 576,
+        
         scale: {mode: Phaser.Scale.FIT,
             max: {
                 width: 800,
@@ -10,7 +11,9 @@ async function runGame() {
             }},
         backgroundColor: '#3498db',
         physics: {default: 'arcade'},
-        parent: "parent"
+        parent: "parent",
+        tileWidth: 16,
+        tileHeight: 16,
         }
     );
    
