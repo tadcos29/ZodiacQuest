@@ -20,11 +20,12 @@ router.put('/skin', withAuth, async (req,res) => {
 
 router.get('/skin', withAuth, async (req,res) => {
   try {
-    currAchieve = await Achievement.findOne({ where: { user_id: req.session.user_id } })
+    currAchieve = await Achievement.findOne({ where: { user_id: req.session.user_id } });
     plainAchieve=currAchieve.get({ plain: true });
     console.log('skin in get');
     console.log(plainAchieve.skin);
-    res.status(200).json(currAchieve);
+    console.log('that was skin in get');
+    res.status(200).json(plainAchieve);
   } catch (err) {
     console.log(err);
   }
