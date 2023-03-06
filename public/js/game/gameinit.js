@@ -25,15 +25,15 @@ async function runGame() {
         console.log('skinfetch');
         
         //   initSettings=response.json();
-        initSettings=JSON.stringify(response.json());
-        console.log(initSettings);
+        initSettings= await response.json();
         game.scene.add('intro', Intro);
         game.scene.add('mainplus', MainPlus);
+        console.log('initsettings just prestart');
+        console.log(initSettings);
         game.scene.start('intro',initSettings);
             } catch (error) {
         console.error(error)
       }
-
 
    
 }
