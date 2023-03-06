@@ -22,7 +22,7 @@
 
     <!--global-->
 
-  <div class="col-3 d-flex justify-content-center">
+  <div class="col-xl-3 col-lg-4 col-md-7 col-xs-12 d-flex justify-content-center" id="global-box">
   <div id="offside" class="profile-box mx-auto bg-slate-200 w-100  pr-10 pl-10 mt-10 rounded-lg">
     <h2 class="p-4 text-center text-white"> Global <span class="material-symbols-outlined">
 leaderboard
@@ -46,17 +46,17 @@ leaderboard
 </div>
 </div>
 <!-- profile -->
- <div class="col-5 d-flex justify-content-center mx-2">
-<div id="boxes" class="profile-box mx-auto w-100 pr-10 pl-10 mt-10">
+ <div class="col-xl-5 col-lg-7 col-md-11 col-xs-12 d-flex justify-content-center mx-2" id="profile-box">
+<div id="boxes" class="profile-box mx-auto w-100 pr-5 pl-5 mt-10">
 <h1 class=" text-center p-4 text-white"> {{user.name}}</h1>
 <div class="row w-100 justify-content-around align-content-around">
-  <div id="card-body" class="card d-flex my-10 col-4">
+  <div id="card-body" class="card d-flex my-10 col-5">
   <div class="card-body">
     <h5 class="card-title text-white text-center">Highscore</h5>
     <p class="card-text text-white text-center"> {{user.hs}} </p>
   </div>
 </div>
- <div  id="card-body" class="card d-flex my-10  col-4">
+ <div  id="card-body" class="card d-flex my-10  col-5">
   <div class="card-body">
     <h5 class="card-title text-white text-center">Times Played</h5>
     <p class="card-text text-white text-center"> {{user.played_count}} </p>
@@ -65,13 +65,13 @@ leaderboard
 </div>
 <div class="row w-100 justify-content-around">
 
- <div id="card-body" class="card d-flex my-10  col-4">
+ <div id="card-body" class="card d-flex my-10  col-5">
   <div class="card-body">
     <h5 class="card-title text-white text-center ">Coins</h5>
     <p class="card-text text-white text-center"> {{user.currency}} </p>
   </div>
 </div>
- <div id="card-body" class="card d-flex my-10  col-4">
+ <div id="card-body" class="card d-flex my-10  col-5">
   <div class="card-body">
     <h5 class="card-title text-white text-center">Current Skin</h5>
     <p class="card-text text-white text-center"> {{user.skin}} </p>
@@ -81,7 +81,7 @@ leaderboard
 </div>
 </div>
  <!--friends stats-->
-<div class="col-3 d-flex justify-content-center">
+<div class="col-xl-3 col-lg-8 col-md-8  col-xs-12 d-flex justify-content-center" id="friends-box">
   <div id="offside" class="profile-box mx-auto bg-slate-200 w-100 pr-10 pl-10 mt-10 pb-10">
       <h2 class="p-4 text-center text-white">Friends <span class="material-symbols-outlined">
 leaderboard
@@ -94,14 +94,15 @@ leaderboard
 </div>
 </div>
 
+
 <!--BOTTOM ROW==================================================================-->
 
-<div class="row vw-100  justify-content-center pb-20 pt-5">
+<div class="row vw-100  justify-content-center pb-20 pt-5 ">
 
 
 <!--graph-->
- <div class="col-4 d-flex justify-content-center mx-2">
-<div id="friend-partial" class="w-100 px-10 pt-4 pb-4">
+ <div class="col-xl-4 col-lg-9 col-md-10 col-xs-12 d-flex justify-content-center mx-2 " id="graph-box">
+<div id="friend-partial" class="w-100 px-10 pt-4 pb-4 ">
   <h3 class="text-center text-white"> L10 Performance</h3>
  
   <div class="linechart">
@@ -114,7 +115,7 @@ leaderboard
 
 
     <!--comments-->
- <div class="col-4 d-flex justify-content-center mx-2">
+ <div class="col-xl-4 col-lg-6 col-md-10 col-xs-12 d-flex justify-content-center mx-2 " id="comment-box">
 <div id="friend-partial" class="w-100 px-20 pt-4 pb-4">
   <h3 class="text-center text-white"> Comments</h3>
   <div>
@@ -122,7 +123,7 @@ leaderboard
   {{> comment-details}}
   {{/each}}
 </div>
-{{#if loggedIn}}
+{{#if loggedIn}} 
 <div class="add-comment">
   <h2 class="add-comment-title">Add a comment</h2>
   <form class="form newcomment-form">
@@ -142,7 +143,7 @@ leaderboard
   </div>
 
   <!--friends-->
- <div class="col-3 d-flex justify-content-center mx-2 ">
+ <div class="col-xl-3 col-lg-5 col-md-7 col-xs-12 d-flex justify-content-center mx-2 ">
 <div id="friend-partial" class="w-100 px-10 pt-4 pb-4 text-center">
   {{> friend-request}}
 </div>
