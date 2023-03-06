@@ -40,7 +40,7 @@ The user may select their favourite of three provided sprite skins and that choi
 
 ## Technology
 
-This project uses [Express.js](https://expressjs.com/) for connectivity, [mysql2](https://www.npmjs.com/package/mysql2) for node.js access to the MySQL database, and [Sequelize](https://sequelize.org/) as the Object Relational Mapping tool. It also uses [bcrypt](https://www.npmjs.com/package/bcrypt) for credentials encryption, [https://www.chartjs.org/](Chart.js) for data visualisation, and of course Phaser.io for game creation.
+This project uses [Express.js](https://expressjs.com/) for connectivity, [mysql2](https://www.npmjs.com/package/mysql2) for node.js access to the MySQL database, and [Sequelize](https://sequelize.org/) as the Object Relational Mapping tool. It also uses [bcrypt](https://www.npmjs.com/package/bcrypt) for credentials encryption, [https://www.chartjs.org/](Chart.js) for data visualisation, [Handlebars](https://handlebarsjs.com/) for rendering the view, and of course Phaser.io for game creation.
 
 
 ## Credits
