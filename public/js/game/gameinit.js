@@ -1,7 +1,3 @@
-// const { response } = require("express");
-
-
-
 async function runGame() {
 
     let game = new Phaser.Game ( {
@@ -9,7 +5,8 @@ async function runGame() {
         scale: {mode: Phaser.Scale.FIT,
             max: {
                 width: 800,
-                height: 600
+                height: 600,
+                autoCenter: Phaser.Scale.CENTER_BOTH
             }},
         backgroundColor: '#3498db',
         physics: {default: 'arcade'},
