@@ -83,6 +83,7 @@ $('body').on('click', '#removeFriend', async function(event) {
       } catch (err) {
         console.error(err);
       }
+      window.location.reload();
     });
   
 
