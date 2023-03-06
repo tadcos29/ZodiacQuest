@@ -119,14 +119,14 @@ leaderboard
  <div class="col-xl-4 col-lg-6 col-md-10 col-xs-12 d-flex justify-content-center mx-2 " id="comment-box">
 <div id="friend-partial" class="w-100 px-20 pt-4 pb-4">
   <h3 class="text-center text-white"> Comments</h3>
-  <div>
+  <div >
   {{#each comments as |comment|}}
   {{> comment-details}}
   {{/each}}
 </div>
 {{#if logged_in}} 
 <div class="add-comment">
-  <h2 class="add-comment-title">Add a comment</h2>
+  <h2 class="add-comment-title text-black text-md">Add a comment</h2>
   <form class="form newcomment-form">
     <div class="form-group">
       <label for="content-newcomment"></label>

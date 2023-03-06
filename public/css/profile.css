@@ -129,6 +129,9 @@ body {
     background-color: var(--special);
 }
 
+#instructions-container {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
 
 
 /* STYLING FOR FRI3END FORM */ 
@@ -191,6 +194,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
 
   @media only screen and (max-width: 1500px) and (min-width: 1400px)  {
     #friends-box {

@@ -27,16 +27,16 @@
           </div>
           
           <div class="d-flex">
-            <a href="#" id="viewInstructions" class="btn btn-outline-secondary me-2">View Instructions</a>
-            <a href="#" id="selectSprite" class="btn btn-outline-secondary me-2">Select Sprite</a>
+            <a href="#" id="viewInstructions" class="btn btn-outline-secondary me-2 text-white">View Instructions</a>
+            <a href="#" id="selectSprite" class="btn btn-outline-secondary me-2 text-white">Select Sprite</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5 pt-3">
       <div class="col-md-6">
-        <div id="instructions-container">
+        <div id="instructions-container" >
           {{> instructions}}
         </div>
         <div id="sprites-container" style="display:none;">
@@ -45,14 +45,14 @@
       </div>
     </div>
 
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-3">
       <div class="col-6 justify-content-center">
         {{> custom-phaser}}
       </div>
     </div>
 
     {{#if logged_in}}
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center text-white">
       <div class="col-md-6">
         <p class="text-center">Logged in as: {{user.name}}</p>
       </div>
