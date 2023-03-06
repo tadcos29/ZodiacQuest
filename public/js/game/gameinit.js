@@ -1,11 +1,11 @@
 async function runGame() {
 
     let game = new Phaser.Game ( {
-        width: 500, height: 340,
+        width: 800, height: 576,
         scale: {mode: Phaser.Scale.FIT,
             max: {
                 width: 800,
-                height: 600,
+                height: 576,
                 autoCenter: Phaser.Scale.CENTER_BOTH
             }},
         backgroundColor: '#3498db',
