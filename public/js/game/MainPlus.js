@@ -82,7 +82,7 @@ class MainPlus {
         this.createWorld();
         this.physics.add.collider(this.player, this.walls);
         this.time.addEvent({
-            delay:2000,
+            delay:3000,
             callback:() => this.addEnemy(),
             loop:true,
         });
@@ -101,7 +101,7 @@ class MainPlus {
        // this.physics.add.collider(this.stars, this.walls);
       //  this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
         this.movePlayer();
-        if (this.player.y > 500 || this.player.y <0) {
+        if (this.player.y > 600 || this.player.y <0) {
             this.playerDie();
         }
         if (this.physics.overlap(this.player, this.coin)) {
@@ -197,22 +197,32 @@ class MainPlus {
         this.updateCoinPosition();
     }
     addEnemy() {
-    let enemy = this.enemies.create(250, -10, 'enemy');
+    let enemy = this.enemies.create(Phaser.Math.RND.pick([250,350]), -10, 'enemy');
     enemy.body.gravity.y=500;
     enemy.body.velocity.x=Phaser.Math.RND.pick([-100,100]);
     enemy.body.bounce.x = 1;
 
-    this.time.addEvent({delay:10000, callback:()=>enemy.destroy()});
+    this.time.addEvent({delay:9000, callback:()=>enemy.destroy()});
     }
     updateCoinPosition() {
-        let positions = [
-            {x: 140, y:60},
-            {x: 360, y:60},
-            {x: 60, y:140},
-            {x: 440, y:140},
-            {x: 130, y:300},
-            {x: 370, y:300}
+        // let positions = [
+        //     {x: 496, y:54},
+        //     {x: 96, y:368},
+        //     {x: 672, y:400},
+        //     {x: 576, y:160},
+        //     {x: 80, y:528},
+        //     {x: 370, y:300}
+        // ]
+        let tileCoords = [ 
+            {x: 10, y:11},
+            {x: 22, y:18},
+            {x: 44, y:15},
+            {x: 35, y:11},
+            {x: 28, y:32},
+            {x: 19, y:29},
         ]
+
+        let positions=tileCoords.map(obj => ({ x: obj.x * 16, y: obj.y * 16 }));
         positions=positions.filter(coin => coin.x !== this.coin.x);
         let newPosition=Phaser.Math.RND.pick(positions);
         this.coin.setPosition(newPosition.x, newPosition.y);
