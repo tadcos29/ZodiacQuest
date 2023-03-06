@@ -1,16 +1,19 @@
 async function runGame() {
 
     let game = new Phaser.Game ( {
-        width: 500, height: 340,
+        width: 800, height: 576,
+        
         scale: {mode: Phaser.Scale.FIT,
             max: {
                 width: 800,
-                height: 600,
+                height: 576,
                 autoCenter: Phaser.Scale.CENTER_BOTH
             }},
         backgroundColor: '#3498db',
         physics: {default: 'arcade'},
-        parent: "parent"
+        parent: "parent",
+        tileWidth: 16,
+        tileHeight: 16,
         }
     );
    
@@ -25,15 +28,15 @@ async function runGame() {
         console.log('skinfetch');
         
         //   initSettings=response.json();
-        initSettings=JSON.stringify(response.json());
-        console.log(initSettings);
+        initSettings= await response.json();
         game.scene.add('intro', Intro);
-        game.scene.add('main', Main);
+        game.scene.add('mainplus', MainPlus);
+        console.log('initsettings just prestart');
+        console.log(initSettings);
         game.scene.start('intro',initSettings);
             } catch (error) {
         console.error(error)
       }
-
 
    
 }

@@ -9,7 +9,25 @@ router.put('/skin', withAuth, async (req,res) => {
       console.log(req.body.image);
       let imageString = req.body.image.split('/');
       let imageName = imageString.pop();
+      let skinId=1;
       console.log('in fetch'+imageName);
+      switch (imageName) {
+        case 'dudemonster.gif':
+          skinId=1;
+          break;
+        case 'pinkmonster.gif':
+          skinId=2;
+          break;
+        case 'owletmonster.gif':
+          skinId=3;
+        break;
+        default:
+          break;
+      }
+      await Achievement.update({ skin: skinId }, {
+        where: { user_id: req.session.user_id }
+      });
+
       res.status(200).json(currAchieve);
     } catch (err) {
       res.status(500).json(err);
