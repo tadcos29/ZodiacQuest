@@ -14,6 +14,11 @@ class Main {
             { frameWidth: 32, frameHeight: 32 });
             this.load.spritesheet('player-idle-2', 'img/game-assets/Pink_Monster_Idle_4.png',
             { frameWidth: 32, frameHeight: 32 });
+   // skin 3
+            this.load.spritesheet('player-walk-3', 'img/game-assets/Owlet_Monster_Walk_6.png',
+            { frameWidth: 32, frameHeight: 32 });
+            this.load.spritesheet('player-idle-3', 'img/game-assets/Owlet_Monster_Idle_4.png',
+            { frameWidth: 32, frameHeight: 32 });
        
         this.load.image('wallH', 'img/game-assets/wallHorizontal.png');
         this.load.image('wallV', 'img/game-assets/wallVertical.png');

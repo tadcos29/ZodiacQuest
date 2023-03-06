@@ -15,96 +15,74 @@
 
 
 <body>
-<div class="row vw-100 pt-20">
-    
-<div class="col-6 ml-auto mr-auto d-flex">
-        <a class=" col-4 text-center" href="/profile"><button id="viewProfile" class="py-2 px-4 rounded-full text-white"> View Profile </button></a>
-     <a class=" col-4 text-center" ><button id="viewInstructions" class=" py-2 px-4 rounded-full text-white"> View Instructions </button></a>
-     <a class=" col-4 text-center" > <button id="selectSprite" class=" py-2 px-4 rounded-full text-white"> Select Sprite </button></a>
-</div>
-      
-</div>
+
+    <div class="container mt-5">
+    <div class="row justify-content-center mb-3">
+      <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="/profile" class="btn btn-primary">View Profile</a>
+          <div class="d-flex">
+            <a href="#" id="viewInstructions" class="btn btn-outline-secondary me-2">View Instructions</a>
+            <a href="#" id="selectSprite" class="btn btn-outline-secondary">Select Sprite</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div id="instructions-container">
+          {{> instructions}}
+        </div>
+        <div id="sprites-container" style="display:none;">
+          {{> select-sprite}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        {{> custom-phaser}}
+      </div>
+    </div>
+
+    {{#if logged_in}}
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-6">
+        <p class="text-center">Logged in as: {{user.name}}</p>
+      </div>
+    </div>
+    {{/if}}
+
+  </div>
 
 
-{{!-- <div class="d-block">
-  {{> custom-phaser}}
-    <div class="col-2 mx-auto my-20">
-    {{> select-sprite}}
-   </div>  
-  <div class="col-2 mx-auto my-20">
-      {{> instructions}}
-   </div>
-    
-     
-</div>
+  
 
-<div>
-   
-{{#if logged_in}}
- <p>Logged in as: {{user.name}}</p>
+    {{#if logged_in}}
+    <div class="row justify-content-center">
+      <div class="col-md-6 mt-4">
+        <p class="text-center">Logged in as: {{user.name}}</p>
+      </div>
+    </div>
+    {{/if}}
 
-{{/if}}
+  </div>
 
-</div>
+  <script>
+    $(document).ready(function(){
+      $("#selectSprite").click(function(event){
+        event.preventDefault();
+        $('#instructions-container').hide();
+        $('#sprites-container').show();
+      });
+
+      $("#viewInstructions").click(function(event){
+        event.preventDefault();
+        $('#sprites-container').hide();
+        $('#instructions-container').show();
+      });
+    });
+  </script>
+  
 </body>
-<script>
-$(document).ready(function(){
-
-  $("#selectSprite").click(function(){
-    $(  {{> instructions}} ).hide();
-     $( {{> select-sprite}} ).show();
-  });
-
-  $("#viewInstructions").click(function(){
-    $({{> instructions}}).show();
-     $({{> select-sprite}}).hide();
-
-  });
-
-});
-</script> --}}
-
-
-<div class="d-block">
-  {{> custom-phaser}}
-  <div class="col-2 mx-auto my-20">
-    <a id="selectSprite" href="#">Select Sprite</a>
-  </div>
-  <div class="col-2 mx-auto my-20">
-    <a id="viewInstructions" href="#">View Instructions</a>
-  </div>
-</div>
-
-<div>
-  {{#if logged_in}}
-    <p>Logged in as: {{user.name}}</p>
-  {{/if}}
-</div>
-
-<div id="instructions-container">
-  {{> instructions}}
-</div>
-
-<div id="sprites-container">
-  {{> select-sprite}}
-</div>
-
-<script>
-  $(document).ready(function(){
-    // Initially hide the select sprite partial
-    $('#sprites-container').hide();
-
-    $("#selectSprite").click(function(event){
-      event.preventDefault();
-      $('#instructions-container').hide();
-      $('#sprites-container').show();
-    });
-
-    $("#viewInstructions").click(function(event){
-      event.preventDefault();
-      $('#sprites-container').hide();
-      $('#instructions-container').show();
-    });
-  });
-</script>
-

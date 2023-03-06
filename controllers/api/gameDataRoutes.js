@@ -2,6 +2,36 @@ const router = require('express').Router();
 const { GameData, Achievement } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+
+router.put('/skin', withAuth, async (req,res) => {
+    try {
+      currAchieve = await Achievement.findOne({ where: { user_id: req.session.user_id } })
+      console.log(req.body.image);
+      let imageString = req.body.image.split('/');
+      let imageName = imageString.pop();
+      console.log('in fetch'+imageName);
+      res.status(200).json(currAchieve);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+
+});
+
+
+router.get('/skin', withAuth, async (req,res) => {
+  try {
+    currAchieve = await Achievement.findOne({ where: { user_id: req.session.user_id } })
+    plainAchieve=currAchieve.get({ plain: true });
+    console.log('skin in get');
+    console.log(plainAchieve.skin);
+    res.status(200).json(currAchieve);
+  } catch (err) {
+    console.log(err);
+  }
+
+});
+
+
 router.post('/', withAuth, async (req, res) => {
   try {
 

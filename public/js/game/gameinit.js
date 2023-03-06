@@ -1,7 +1,8 @@
+// const { response } = require("express");
 
 
 
-function runGame() {
+async function runGame() {
 
     let game = new Phaser.Game ( {
         width: 500, height: 340,
@@ -15,9 +16,29 @@ function runGame() {
         parent: "parent"
         }
     );
-    game.scene.add('intro', Intro);
-    game.scene.add('main', Main);
-    game.scene.start('intro',{skin:2,score:20});
+   
+    try {
+        const response = await fetch('/api/gamedata/skin', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+          
+        });
+        console.log('skinfetch');
+        
+        //   initSettings=response.json();
+        initSettings=JSON.stringify(response.json());
+        console.log(initSettings);
+        game.scene.add('intro', Intro);
+        game.scene.add('main', Main);
+        game.scene.start('intro',initSettings);
+            } catch (error) {
+        console.error(error)
+      }
+
+
+   
 }
 
 let newScore = runGame();
