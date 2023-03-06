@@ -44,7 +44,7 @@ router.get('/profile/:id', withAuth, async (req, res) => {
 let user = userData.get({ plain: true });
 absoluteSession = req.session.user_id;
 // const games = gameData.map((game) => game.get({ plain: true }));
-const rawGameData = await sequelize.query(`select game_data.score as 'scores' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.params.id} ORDER BY game_data.created_at DESC LIMIT 10;`);
+const rawGameData = await sequelize.query(`select game_data.score as 'scores' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.params.id} ORDER BY game_data.created_at LIMIT 10;`);
 const rawPlayCount = await sequelize.query(`select count(game_data.id) as 'played_count' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.params.id} GROUP BY user.id;`);
 const rawHS = await sequelize.query(`select achievement.hs as 'hs', achievement.currency as 'currency', achievement.skin as 'skin' from user JOIN achievement on achievement.user_id=user.id WHERE user.id=${req.params.id}`);
 const rawLeaderBoard = await sequelize.query(`SELECT user.name as 'name', achievement.hs as 'hs' FROM user JOIN achievement on achievement.user_id=user.id ORDER BY achievement.hs DESC;`);
@@ -126,7 +126,7 @@ router.get('/profile', withAuth, async (req, res) => {
 let user = userData.get({ plain: true });
 absoluteSession = req.session.user_id;
 // const games = gameData.map((game) => game.get({ plain: true }));
-const rawGameData = await sequelize.query(`select game_data.score as 'scores' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.session.user_id} ORDER BY game_data.created_at DESC LIMIT 10;`);
+const rawGameData = await sequelize.query(`select game_data.score as 'scores' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.session.user_id} ORDER BY game_data.created_at LIMIT 10;`);
 const rawPlayCount = await sequelize.query(`select count(game_data.id) as 'played_count' from user JOIN game_data on game_data.user_id=user.id WHERE user.id=${req.session.user_id} GROUP BY user.id;`);
 const rawHS = await sequelize.query(`select achievement.hs as 'hs', achievement.currency as 'currency', achievement.skin as 'skin' from user JOIN achievement on achievement.user_id=user.id WHERE user.id=${req.session.user_id}`);
 const rawLeaderBoard = await sequelize.query(`SELECT user.name as 'name', achievement.hs as 'hs' FROM user JOIN achievement on achievement.user_id=user.id ORDER BY achievement.hs DESC;`);
