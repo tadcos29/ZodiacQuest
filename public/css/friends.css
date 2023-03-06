@@ -192,3 +192,28 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+
+  #sendFriendRequest {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--primary);  
+    font-size: .8rem;
+}
+#sendFriendRequest:hover {
+    font-family: 'IBM Plex Sans', sans-serif;
+
+    background-color: #4f48d8;  
+    font-size: .8rem;
+}
+
+#sendFriendRequest {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--primary);  
+    font-size: .8rem;
+}
+#sendFriendRequest:hover {
+    font-family: 'IBM Plex Sans', sans-serif;
+
+    background-color: #4f48d8;  
+    font-size: .8rem;
+}
