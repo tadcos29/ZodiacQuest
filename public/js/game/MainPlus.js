@@ -83,6 +83,20 @@ class MainPlus {
         this.currency=0;
         this.createWorld();
         this.physics.add.collider(this.player, this.walls);
+        this.fancyStars = this.physics.add.group({
+            key: 'star',
+            repeat: 8,
+            setXY: { x: 240, y: 40, stepX: 18 }
+        });
+        this.fancyStars.children.iterate(function (child) {
+
+            child.enableBody(true, child.x, 0, true, true);
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+            child.setBounceX(Phaser.Math.FloatBetween(0.4, 0.8));
+            child.body.velocity.x=Phaser.Math.RND.pick([-40,40]);
+            child.setGravityY(150);
+
+        });
         this.time.addEvent({
             delay:3000,
             callback:() => this.addEnemy(),
@@ -100,8 +114,8 @@ class MainPlus {
         if (this.physics.overlap(this.player, this.enemies)) {
             this.playerDie();
         }
-       // this.physics.add.collider(this.stars, this.walls);
-      //  this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+       this.physics.add.collider(this.fancyStars, this.walls);
+       this.physics.add.overlap(this.player, this.fancyStars, this.collectStar, null, this);
         this.movePlayer();
         if (this.player.y > 600 || this.player.y <0) {
             this.playerDie();
@@ -109,6 +123,11 @@ class MainPlus {
         if (this.physics.overlap(this.player, this.coin)) {
             this.takeCoin();
         }
+        this.fancyStars.children.iterate(function (child) {
+            if (child.y > 600) {
+                child.disableBody(true, true);
+            }
+        });
     }
     
     // methods
@@ -232,22 +251,28 @@ class MainPlus {
     //     });
 
     // }
-    // collectStar(star)
-    // {
-    //     star.disableBody(true, true);
+    collectStar(player, star)
+    {
+        star.disableBody(true, true);
 
-    //     //  Add and update the score
-    //     this.score += 10;
-    //     this.scoreText.setText('Score: ' + score);
+        //  Add and update the score
+        this.score += 10;
+        this.scoreText.setText('Score: ' + this.score);
+        console.log('starcount');
+        console.log(this.fancyStars.countActive(true));
+        if (this.fancyStars.countActive(true) === 0)
+        {
+            
+            console.log('out of stars');
+            this.fancyStars.children.iterate(function (child) {
 
-    //     if (this.stars.countActive(true) === 0)
-    //     {
-    //         //  A new batch of stars to collect
-    //         this.stars.children.iterate(function (child) {
+                child.enableBody(true, child.x, 0, true, true);
+                child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+                child.setBounceX(Phaser.Math.FloatBetween(0.4, 0.8));
+            child.body.velocity.x=Phaser.Math.RND.pick([-40,40]);
+                child.setGravityY(150);
 
-    //             child.enableBody(true, child.x, 0, true, true);
-
-    //         });
+            });
 
             // let x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
@@ -257,6 +282,6 @@ class MainPlus {
             // bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
             // bomb.allowGravity = false;
 
-    //     }
-    // }
+        }
+    }
 }
