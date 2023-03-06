@@ -147,7 +147,7 @@ leaderboard
   {{> comment-details}}
   {{/each}}
 </div>
-{{!-- {{#if loggedIn}} --}}
+{{#if logged_in}}
 <div class="add-comment">
   <h2 class="add-comment-title">Add a comment</h2>
   <form class="form newcomment-form">
@@ -161,7 +161,7 @@ leaderboard
   </form>
 </div>
 <script src="../js/new-comment.js"></script>
-{{!-- {{/if}} --}}
+{{/if}}
 
 </div>
   </div>

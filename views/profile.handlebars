@@ -119,11 +119,11 @@ leaderboard
 <div id="friend-partial" class="w-100 px-20 pt-4 pb-4">
   <h3 class="text-center text-white"> Comments</h3>
   <div>
-  {{#each post.comments as |comment|}}
+  {{#each comments as |comment|}}
   {{> comment-details}}
   {{/each}}
 </div>
-{{#if loggedIn}} 
+{{#if logged_in}} 
 <div class="add-comment">
   <h2 class="add-comment-title">Add a comment</h2>
   <form class="form newcomment-form">
