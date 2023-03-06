@@ -56,7 +56,7 @@ class MainPlus {
    
        
         this.bg1 = this.add.image(-5, -5, 'bg1').setOrigin(0,0);
-        this.player=this.physics.add.sprite(250, 170, 'player');
+        this.player=this.physics.add.sprite(300, 224, 'player');
         this.enemies = this.physics.add.group();
                // this.addStars();
         this.anims.create({
@@ -75,8 +75,10 @@ class MainPlus {
         this.player.body.gravity.y=500;
         this.coin = this.physics.add.sprite(60, 130,'coin')
         this.arrow = this.input.keyboard.createCursorKeys();
-        this.scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
-        this.currencyText = this.add.text(16, 54, 'Currency Gained: 0', { fontSize: '32px', fill: '#000' });
+        this.scoreText = this.add.text(36, 16, 'Score: 0', { font: '32px Quantico', fill: '#fff' });
+        this.scoreText.setDepth(1);
+        this.currencyText = this.add.text(36, 54, 'Currency Gained: 0', { font: '32px Quantico', fill: '#f00' });
+        this.currencyText.setDepth(1);
         this.score=0;
         this.currency=0;
         this.createWorld();
@@ -148,23 +150,8 @@ class MainPlus {
     }
     
     createWorld() {
-        // this.walls = this.physics.add.staticGroup();
-        // this.walls.create(10,170, 'wallV');
-        // this.walls.create(490,170, 'wallV');
-
-        // this.walls.create(50,10, 'wallH');
-        // this.walls.create(450,10, 'wallH');
-        // this.walls.create(50,330, 'wallH');
-        // this.walls.create(450,330, 'wallH');
-
-        
-        // this.walls.create(0,170, 'wallH');
-        // this.walls.create(500,170, 'wallH');
-        // this.walls.create(250,90, 'wallH');
-        // this.walls.create(250,250, 'wallH');
+ 
         this.fancyMap = this.add.tilemap('stepbystep');
-        // this.map.tileWidth=16;
-        // this.map.tileHeight=16;
         this.fancyTileset = this.fancyMap.addTilesetImage('space-cave-tileset','space-cave-tileset',
          // 16, 16,0,0
          );
@@ -199,7 +186,7 @@ class MainPlus {
     addEnemy() {
     let enemy = this.enemies.create(Phaser.Math.RND.pick([250,350]), -10, 'enemy');
     enemy.body.gravity.y=500;
-    enemy.body.velocity.x=Phaser.Math.RND.pick([-100,100]);
+    enemy.body.velocity.x=Phaser.Math.RND.pick([-120,120]);
     enemy.body.bounce.x = 1;
 
     this.time.addEvent({delay:9000, callback:()=>enemy.destroy()});
@@ -220,9 +207,11 @@ class MainPlus {
             {x: 35, y:11},
             {x: 28, y:32},
             {x: 19, y:29},
-        ]
+            {x: 39, y:20},
+            {x: 47, y:33},
+        ]   
 
-        let positions=tileCoords.map(obj => ({ x: obj.x * 16, y: obj.y * 16 }));
+        let positions=tileCoords.map(obj => ({ x: (obj.x-1) * 16, y: (obj.y-1) * 16 }));
         positions=positions.filter(coin => coin.x !== this.coin.x);
         let newPosition=Phaser.Math.RND.pick(positions);
         this.coin.setPosition(newPosition.x, newPosition.y);
