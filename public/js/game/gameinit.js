@@ -28,7 +28,7 @@ async function runGame() {
         initSettings=JSON.stringify(response.json());
         console.log(initSettings);
         game.scene.add('intro', Intro);
-        game.scene.add('main', Main);
+        game.scene.add('mainplus', MainPlus);
         game.scene.start('intro',initSettings);
             } catch (error) {
         console.error(error)

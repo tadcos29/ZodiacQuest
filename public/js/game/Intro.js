@@ -22,7 +22,7 @@ class Intro {
 
     update() {
         if (this.spaceBar.isDown) {
-            this.scene.start('main', this.passedData);
+            this.scene.start('mainplus', this.passedData);
         }
 
     }
