@@ -4,7 +4,7 @@
 
 In second major group project of the full stack bootcamp my team and I took the opportunity to practice building full-stack web applications using the Model-View-Controller architectural paradigm.
 
-While the typical approach to this project centered on user behaviour, we were interested in the collection and analysis of data user behaviour, and in the principles of social networking and engagement incentives built around a central hook, in this case a simple browser platformer game.
+While the typical approach to this project centered on user input, we were interested in the collection and analysis of data on user behaviour, and in the principles of social networking and engagement incentives built around a central hook, in this case a simple browser platformer game.
 
 ## Table of Contents
 
